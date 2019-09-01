@@ -2,7 +2,7 @@ import React, { useState, FunctionComponent, ChangeEvent } from 'react';
 import User from "../../interfaces/User.interface";
 import uuidv1 from 'uuid/v1';
 import './styles.scss'
-import { string } from "prop-types";
+
 
 type FormAddProps = {
     addUser: Function
@@ -11,7 +11,7 @@ type FormAddProps = {
 const AddForm: FunctionComponent<FormAddProps> = ({addUser}) => {
     // console.log(props);
     // const {name, hobby, date, add, handleChange, handleChangeHobby} = useAddFormHook(addUser)
-    const {add, handleChange, state } = useAddFormHook(addUser)
+    const {add, handleChange, state} = useAddFormHook(addUser)
 
 
     return (
@@ -25,14 +25,18 @@ const AddForm: FunctionComponent<FormAddProps> = ({addUser}) => {
                 {
                     (Object.keys(state)  as Array<keyof typeof state>).map((input) => {
                         return (
-                           <input className="input" type={input === 'date' ? input: 'text'} value={state[input]}  onChange={(e) => handleChange(input, e)}/>
+                            <input
+                                placeholder={`Enter user ${input}`}
+                                className="input"
+                                type={input === 'date' ? input : 'text'} value={state[input]}
+                                onChange={(e) => handleChange(input, e)}/>
 
-                       )
+                        )
                     })
                 }
             </div>
 
-            <button type="submit">Add</button>
+            <button className="btn btn-primary" type="submit">Add</button>
         </form>
     )
 }
@@ -63,8 +67,8 @@ const useAddFormHook = (addUser: Function) => {
             const user: User = {
                 id: uuidv1(),
                 first_name: state.name,
-                hobby: state.hobby,
-                year: new Date(state.date).toLocaleDateString()
+                hobbies: [],
+                // year: new Date(state.date).toLocaleDateString()
             }
 
             addUser(user)
@@ -90,7 +94,7 @@ const useAddFormHook = (addUser: Function) => {
     //
     //
     // };
-    const handleChange = ( key: string, e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (key: string, e: React.ChangeEvent<HTMLInputElement>) => {
         setState({...state, [key]: e.target.value})
 
     };

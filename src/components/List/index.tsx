@@ -1,40 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import UserCard from "../User";
 import ListUser from "../../interfaces/ListUsers";
-import './styles.scss'
+// import './Hobby/styles.scss'
 
 
 const List = (props: ListUser) => {
     const {users} = props;
+
+    // const {selected, setSelected} = useState(null)
+
     return (
         <div className="ant-table">
-            <table>
-                <thead className="ant-table-thead">
-                <tr>
-                    <th>Name</th>
-                    <th>Passion</th>
-                    <th>Hobby</th>
-                    <th>Year</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody className="ant-table-tbody">
-                {
-                    users.map((item) => {
-                        return (
-                            <UserCard
-                                key={item.id}
-                                first_name={item.first_name}
-                                hobby={item.hobby}
-                                passion={item.passion}
-                                year={item.year}
-                            />
-                        )
-                    })
-                }
+            {
+                users.map((item) => {
+                    return (
+                        <UserCard
+                            key={item.id}
+                            first_name={item.first_name}
+                            hobbies={item.hobbies}
+                        />
+                    )
+                })
+            }
+                {/*{*/}
+                    {/*users.map((item) => {*/}
+                        {/*return (*/}
+                            {/*<div onClick={() => setUser(item)}>{item.first_name}</div>*/}
+                        {/*)*/}
+                    {/*})*/}
+                {/*}*/}
+                {/*{*/}
+                    {/*user.hobbies.map((item) => {*/}
+                        {/*return (*/}
+                            {/*<UserCard*/}
+                                {/*key={item.id}*/}
+                                {/*first_name={item.first_name}*/}
+                                {/*hobbies={item.hobbies}*/}
+                            {/*/>*/}
+                        {/*)*/}
+                    {/*})*/}
+                {/*}*/}
 
-                </tbody>
-            </table>
         </div>
     )
 };

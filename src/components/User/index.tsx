@@ -1,20 +1,19 @@
 import React from 'react';
 import User from "../../interfaces/User.interface";
 import './styles.scss'
+import HobbyList from "../List/Hobby";
 
 
 const UserCard = (props: User) => {
-    const {first_name, hobby, passion, year} = props;
-    let _year = year.toLocaleString();
+    const {first_name, hobbies} = props;
+    // let _year = year.toLocaleString();
 
     return (
-        <tr>
-            <td>{first_name}</td>
-            <td>{passion}</td>
-            <td>{hobby}</td>
-            <td>{_year}</td>
-            <td><button className="btn btn-danger">Delete</button></td>
-        </tr>
+        <div className="wrap">
+            <div className="user">{first_name}</div>
+            <HobbyList hobbies={hobbies}/>
+            {/*<button className="btn btn-danger">Delete</button>*/}
+        </div>
 
     )
 

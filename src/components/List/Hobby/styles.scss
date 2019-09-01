@@ -5,8 +5,10 @@
   border-collapse: separate;
   border-spacing: 0
 }
-
-.ant-table-thead>tr>th {
+.ant-table {
+  width: 100%;
+}
+.ant-table > tr > th {
   color: rgba(0,0,0,0.85);
   font-weight: 500;
   text-align: left;

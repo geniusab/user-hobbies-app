@@ -1,33 +1,60 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import './App.css';
 import Header from './components/Header'
 import List from "./components/List";
 import FormAdd from "./components/Form";
-import User from "./interfaces/User.interface";
+import './App.scss';
 
 const Users = [
     {
         id: 1,
         first_name: 'Andre',
-        passion: 'Medium',
-        hobby: 'Playing football',
-        year: new Date('2015-1-4'),  //new Date(1933, 3, 21),
+        hobbies: [
+            {
+                passion: 'High',
+                hobby: 'Listening to music',
+                year: new Date('2015-1-4'),
+            },
+            {
+                passion: 'Medium',
+                hobby: 'Playing football',
+                year: new Date('2015-1-4')
+            }
+        ]
     },
-    {
-        id: 2,
-        first_name: 'Peter',
-        passion: 'High',
-        hobby: 'Listening to music',
-        year: new Date('2015-1-4'),
-    },
-    {
-        id: 3,
-        first_name: 'Markus',
-        passion: 'Low',
-        hobby: 'Going to Concert',
-        year: new Date('2013-6-4'),
-    }
+    // {
+    //     id: 2,
+    //     first_name: 'Peter',
+    //     hobbies: [
+    //         {
+    //             passion: 'High',
+    //             hobby: 'Listening to music',
+    //             year: new Date('2015-1-4'),
+    //         }
+    //     ]
+    // },
+    // {
+    //     id: 3,
+    //     first_name: 'Markus',
+    //     hobbies: [
+    //         {
+    //             passion: 'High',
+    //             hobby: 'Listening to music',
+    //             year: new Date('2015-1-4'),
+    //         },
+    //         {
+    //             passion: 'Medium',
+    //             hobby: 'Playing football',
+    //             year: new Date('2015-1-4')
+    //         },
+    //         {
+    //             passion: 'Low',
+    //             hobby: 'Going to Concert',
+    //             year: new Date('2013-6-4')
+    //         }
+    //     ]
+    //
+    // }
 ]
 
 function App() {
@@ -46,7 +73,7 @@ function App() {
         <div className="App">
             <Header/>
             <FormAdd addUser={addUser}/>
-            <List users={users}/>
+            <List users={users} />
         </div>
     );
 }

@@ -1,9 +1,8 @@
-import { Passion } from "./Passion.interface";
+import Hobby from "./Hobby.interface";
 
 export default interface User {
     id?: string | number;
     first_name?: string;
-    hobby?: string;
-    year?: Date | string;
-    passion?: Passion | string
+    hobbies?: Array<Hobby>
 }
+

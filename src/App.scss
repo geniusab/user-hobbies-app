@@ -1,0 +1,53 @@
+.App {
+  text-align: center;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+
+.btn {
+  -webkit-appearance: button;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  font-weight: 400;
+  white-space: nowrap;
+  text-align: center;
+  background-image: none;
+  border: 1px solid transparent;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.015);
+  cursor: pointer;
+  transition: all .3s cubic-bezier(.645, .045, .355, 1);
+  user-select: none;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  height: 32px;
+  padding: 0 15px;
+  font-size: 14px;
+  border-radius: 4px;
+  color: rgba(0,0,0,0.65);
+  &-primary {
+    color: #fff;
+    background-color: #1890ff;
+    border-color: #1890ff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+  }
+  &-danger {
+    color: #fff;
+    background-color: #ff4d4f;
+    border-color: #ff4d4f;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+  }
+  &:active {
+    color: #fff;
+    background-color: #d9363e;
+    border-color: #d9363e
+  }
+  :not([disabled]):active {
+    outline: 0;
+    box-shadow: none;
+  }
+}
