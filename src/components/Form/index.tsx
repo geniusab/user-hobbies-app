@@ -1,34 +1,108 @@
-import React, { useState } from 'react';
+import React, { useState, FunctionComponent, ChangeEvent } from 'react';
 import User from "../../interfaces/User.interface";
 import uuidv1 from 'uuid/v1';
+import './styles.scss'
+import { string } from "prop-types";
 
+type FormAddProps = {
+    addUser: Function
+}
 
-const FormAdd = () => {
-
-    const [value, setValue] = useState('');
-
-    const add = (name: string): any => {
-        const user: User = {
-            id: uuidv1(),
-            first_name: name,
-            hobby: '',
-            year: new Date('21.09.1999')
-        }
-        console.log(user);
-
-    };
-    const handleChange = (e: any) => {
-        setValue(e.target.value)
-    };
-
+const AddForm: FunctionComponent<FormAddProps> = ({addUser}) => {
+    // console.log(props);
+    // const {name, hobby, date, add, handleChange, handleChangeHobby} = useAddFormHook(addUser)
+    const {add, handleChange, state } = useAddFormHook(addUser)
 
 
     return (
-        <div>
-            <input type="text" onChange={handleChange}/>
-            <button onClick={add(value)}>Add</button>
-        </div>
+        <form onSubmit={(event) => add(event)}>
+            <div className="group">
+                {/*<input className="input" type="text" value={name} onChange={handleChange}/>*/}
+                {/*<input className="input" type="text" value={hobby} onChange={handleChangeHobby}/>*/}
+                {/*<input className="input" type="text" value={state.name} onChange={(e) => handleChange('name', e)}/>*/}
+                {/*<input className="input" type="text" value={state.hobby} onChange={(e) => handleChange('hobby', e)}/>*/}
+                {/*<input className="input" type="date" value={state.date}  onChange={(e) => handleChange('date', e)}/>*/}
+                {
+                    (Object.keys(state)  as Array<keyof typeof state>).map((input) => {
+                        return (
+                           <input className="input" type={input === 'date' ? input: 'text'} value={state[input]}  onChange={(e) => handleChange(input, e)}/>
+
+                       )
+                    })
+                }
+            </div>
+
+            <button type="submit">Add</button>
+        </form>
     )
 }
 
-export default FormAdd
+const initState = {
+    name: '',
+    hobby: '',
+    date: Date.now().toLocaleString(),
+}
+
+const useAddFormHook = (addUser: Function) => {
+    // console.log(props);
+    // const [name, setName] = useState('');
+    // const [hobby, setHobby] = useState('');
+    // const [date, setHobby] = useState('');
+
+    const [state, setState] = useState(initState)
+
+    const reset = () => {
+        // setName('');
+        // setHobby('');
+        setState(initState);
+    };
+
+    const add = (event: React.FormEvent<HTMLFormElement>): void => {
+        event.preventDefault();
+        if (state.name.trim() !== '' && state.hobby.trim() !== '') {
+            const user: User = {
+                id: uuidv1(),
+                first_name: state.name,
+                hobby: state.hobby,
+                year: new Date(state.date).toLocaleDateString()
+            }
+
+            addUser(user)
+            reset()
+        }
+
+
+    };
+
+    // const add = (event: React.FormEvent<HTMLFormElement>, name: string, hobby: string): void => {
+    //     event.preventDefault();
+    //     if (name.trim() !== '' && hobby.trim() !== '') {
+    //         const user: User = {
+    //             id: uuidv1(),
+    //             first_name: name,
+    //             hobby: hobby,
+    //             year: new Date('21.09.1999')
+    //         }
+    //
+    //         addUser(user)
+    //         reset()
+    //     }
+    //
+    //
+    // };
+    const handleChange = ( key: string, e: React.ChangeEvent<HTMLInputElement>) => {
+        setState({...state, [key]: e.target.value})
+
+    };
+    // const handleChangeHobby = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     setHobby(e.target.value)
+    // }
+    // const handleChangeHobby = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     setHobby(e.target.value)
+    // }
+
+    // return {name, hobby, add, handleChange, handleChangeHobby}
+    return {add, handleChange, state}
+}
+
+export default AddForm

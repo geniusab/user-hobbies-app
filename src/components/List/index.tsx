@@ -13,13 +13,9 @@ const List = (props: ListUser) => {
                 <tr>
                     <th>Name</th>
                     <th>Passion</th>
-                    <th className=""><span className="ant-table-header-column"><div><span
-                        className="ant-table-column-title">Hobby</span></div></span></th>
-                    <th className=""><span className="ant-table-header-column"><div><span
-                        className="ant-table-column-title">Year</span></div></span>
-                    </th>
-                    <th className=""><span className="ant-table-header-column"><div><span
-                        className="ant-table-column-title">Action</span></div></span></th>
+                    <th>Hobby</th>
+                    <th>Year</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody className="ant-table-tbody">
@@ -30,7 +26,7 @@ const List = (props: ListUser) => {
                                 key={item.id}
                                 first_name={item.first_name}
                                 hobby={item.hobby}
-                                // passion={item.passion}
+                                passion={item.passion}
                                 year={item.year}
                             />
                         )
