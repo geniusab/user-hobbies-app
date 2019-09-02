@@ -7,7 +7,31 @@ import './styles.scss'
 const HobbyList = (props: any) => {
     const {hobbies} = props;
 
-    // const {selected, setSelected} = useState(null)
+
+    const items = hobbies.map((item: any, key: any) => {
+        return (
+            <tr key={key}>
+                <td>{item.passion}</td>
+                <td>{item.hobby}</td>
+                <td>{item.year.toLocaleString()}</td>
+                <td>
+                    <button className="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        )
+    });
+
+
+    const not_found =  (<tr>
+        <td>passion</td>
+        <td>hobby</td>
+        <td>year</td>
+        <td>
+            <button className="btn btn-danger">Delete</button>
+        </td>
+    </tr>)
+
+
 
     return (
         <div className="ant-table">
@@ -21,20 +45,7 @@ const HobbyList = (props: any) => {
                 </tr>
                 </thead>
                 <tbody className="ant-table-tbody">
-                {
-                    hobbies.map((item: any) => {
-                        return (
-                            <tr>
-                                <td>{item.passion}</td>
-                                <td>{item.hobby}</td>
-                                <td>{item.year.toLocaleString()}</td>
-                                <td>
-                                    <button className="btn btn-danger">Delete</button>
-                                </td>
-                            </tr>
-                        )
-                    })
-                }
+                    {items.length ? items: not_found}
                 </tbody>
             </table>
         </div>
