@@ -1,15 +1,13 @@
 import React, { useState, FunctionComponent, ChangeEvent } from 'react';
 import User from "../../../interfaces/User.interface";
+import {connect} from 'react-redux';
 import uuidv1 from 'uuid/v1';
 import './styles.scss'
+import { addUser } from "../../../redux/actions";
 
 
 
-type FormAddProps = {
-    addUser: Function
-}
-
-const AddUser: FunctionComponent<FormAddProps> = ({addUser}) => {
+const AddUser = () => {
     const [name, setName] = useState('');
 
     const reset = () => {
@@ -23,7 +21,6 @@ const AddUser: FunctionComponent<FormAddProps> = ({addUser}) => {
                 first_name: name,
                 hobbies: [],
             }
-
             addUser(user)
             reset()
         }
@@ -43,5 +40,7 @@ const AddUser: FunctionComponent<FormAddProps> = ({addUser}) => {
     )
 }
 
-
-export default AddUser
+const mapStateToProps = (state: any) => ({
+    users: state.users
+});
+export default connect(mapStateToProps, {addUser})(AddUser)

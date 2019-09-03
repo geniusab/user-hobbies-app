@@ -1,90 +1,37 @@
-import React, { useState } from 'react';
-
+import React, { FunctionComponent, useState } from 'react';
+import {connect} from 'react-redux';
 import Header from './components/Header'
 import List from "./components/List";
 import './App.scss';
 
 import Forms from "./components/Form";
+import mock_users from "./service/mock";
+import User from "./interfaces/User.interface";
+import { addUser } from "./redux/actions";
+import AddUser from "./components/Form/AddUser";
 
-const Users = [
-    {
-        id: 1,
-        first_name: 'Andre',
-        hobbies: [
-            {
-                passion: 'High',
-                hobby: 'Listening to music',
-                year: new Date('2015-1-4'),
-            },
-            {
-                passion: 'Medium',
-                hobby: 'Playing football',
-                year: new Date('2015-1-4')
-            }
-        ],
+type AppProps = {
+    users: Array<User>
+}
 
-    },
-    {
-        id: 2,
-        first_name: 'Peter',
-        hobbies: [
-            {
-                passion: 'High',
-                hobby: 'Listening to music',
-                year: new Date('2015-1-4'),
-            }
-        ]
-    },
-    {
-        id: 3,
-        first_name: 'Markus',
-        hobbies: [
-            {
-                passion: 'High',
-                hobby: 'Listening to music',
-                year: new Date('2015-1-4'),
-            },
-            {
-                passion: 'Medium',
-                hobby: 'Playing football',
-                year: new Date('2015-1-4')
-            },
-            {
-                passion: 'Low',
-                hobby: 'Going to Concert',
-                year: new Date('2013-6-4')
-            }
-        ]
 
-    }
-]
-
-function App() {
-
-    const [users, setUsers] = useState(Users);
-
-    // useEffect(() => {
-    //     setUsers()
-    // }, [setUsers])
-
-    const addUser = (newUser: any) => {
-        setUsers([...users, newUser])
-    }
-
-    const addHobby = (id: string, hobby: any) => {
-
-        // setUsers([...users, newUser])
-    }
-
+const App:FunctionComponent<AppProps> = (props) =>  {
+    const {users} = props;
     return (
         <div className="App">
-            <Header/>
-            {/*<AddUser addUser={addUser}/>*/}
-            {/*<FormAdd addUser={addUser}/>*/}
-            <Forms addUser={addUser} addHobby={addHobby}/>
-            <List users={users}  />
+            <List users={users} />
+            <AddUser/>
         </div>
     );
 }
 
-export default App;
+const mapStateToProps = (state: any) => ({
+    users: state.users
+});
+
+// const mapDispatchToProps = {
+//     // getUsers: () => getUsers()
+//
+// }
+
+export default connect(mapStateToProps, {addUser})(App);
