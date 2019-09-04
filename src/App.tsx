@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Header from './components/Header'
 import List from "./components/List";
 import './App.scss';
@@ -16,11 +16,11 @@ type AppProps = {
 }
 
 
-const App:FunctionComponent<AppProps> = (props) =>  {
+const App: FunctionComponent<AppProps> = (props) => {
     const {users, addUser} = props;
     return (
         <div className="App">
-            <List users={users} />
+            <List users={users}/>
             <AddUser addUser={addUser}/>
         </div>
     );

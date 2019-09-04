@@ -11,7 +11,6 @@ const initialState: UsersState = {
 }
 
 const reducer = (state = initialState, action: UersActionTypes): UsersState => {
-    console.log(1);
     switch (action.type) {
         case ADD_USER:
             return {
