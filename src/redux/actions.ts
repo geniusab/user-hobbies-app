@@ -3,6 +3,8 @@ import { ADD_USER, DELETE_USER } from "./types";
 
 
 export function addUser(newUser: User) {
+    console.log('newUser', newUser);
+    console.log('newUser_end');
     return {
         type: ADD_USER,
         payload: newUser

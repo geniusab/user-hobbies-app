@@ -3,11 +3,13 @@ import User from "../../../interfaces/User.interface";
 import {connect} from 'react-redux';
 import uuidv1 from 'uuid/v1';
 import './styles.scss'
-import { addUser } from "../../../redux/actions";
+// import { addUser } from "../../../redux/actions";
 
+type AddUser = {
+    addUser: Function
+}
 
-
-const AddUser = () => {
+const AddUser:FunctionComponent<AddUser> = ({addUser}) => {
     const [name, setName] = useState('');
 
     const reset = () => {
@@ -16,11 +18,12 @@ const AddUser = () => {
     const add = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
         if (name.trim() !== '') {
+            console.log(12222);
             const user: User = {
                 id: uuidv1(),
                 first_name: name,
                 hobbies: [],
-            }
+            };
             addUser(user)
             reset()
         }
@@ -40,7 +43,4 @@ const AddUser = () => {
     )
 }
 
-const mapStateToProps = (state: any) => ({
-    users: state.users
-});
-export default connect(mapStateToProps, {addUser})(AddUser)
+export default AddUser

@@ -12,15 +12,16 @@ import AddUser from "./components/Form/AddUser";
 
 type AppProps = {
     users: Array<User>
+    addUser: Function
 }
 
 
 const App:FunctionComponent<AppProps> = (props) =>  {
-    const {users} = props;
+    const {users, addUser} = props;
     return (
         <div className="App">
             <List users={users} />
-            <AddUser/>
+            <AddUser addUser={addUser}/>
         </div>
     );
 }
@@ -28,10 +29,5 @@ const App:FunctionComponent<AppProps> = (props) =>  {
 const mapStateToProps = (state: any) => ({
     users: state.users
 });
-
-// const mapDispatchToProps = {
-//     // getUsers: () => getUsers()
-//
-// }
 
 export default connect(mapStateToProps, {addUser})(App);
