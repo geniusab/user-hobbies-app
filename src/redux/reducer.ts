@@ -1,28 +1,38 @@
-import User from "../interfaces/User.interface";
-import mock_users from "../service/mock";
-import { UersActionTypes, ADD_USER, DELETE_USER } from "./types";
+import User from '../interfaces/User.interface'
+import mock_users from '../service/mock'
+import { UsersActionTypes, ADD_USER, DELETE_USER, SELECTED_USER } from './types'
 
 export interface UsersState {
-    users: Array<User>;
+  users: Array<User>
+  selected: any
 }
 
 const initialState: UsersState = {
-    users: mock_users()
+  users: mock_users(),
+  selected: 1,
 }
 
-const reducer = (state = initialState, action: UersActionTypes): UsersState => {
-    switch (action.type) {
-        case ADD_USER:
-            return {
-                users: [...state.users, action.payload]
-            }
-        case DELETE_USER:
-            return {
-                users: state.users.filter((user => user.id !== action.payload))
-            }
-        default:
-            return state
+const reducer = (state = initialState, action: UsersActionTypes): UsersState => {
+  switch (action.type) {
+    case ADD_USER:
+      return {
+        ...state,
+        users: [...state.users, action.payload],
+      }
+    case DELETE_USER:
+      return {
+        ...state,
+        users: state.users.filter(user => user.id !== action.payload),
+      }
+    case SELECTED_USER: {
+      return {
+        ...state,
+        selected: action.payload,
+      }
     }
+    default:
+      return state
+  }
 }
 
 export default reducer

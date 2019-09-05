@@ -1,6 +1,8 @@
-import User from "./User.interface";
+import User from './User.interface'
 
 export default interface ListUser {
-    users: Array<User>
-    onItemSelected?: Function
+  users: Array<User>
+  onItemSelected?: Function
+  deleteUser?: Function
+  selectedUser?: Function
 }

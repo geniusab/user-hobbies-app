@@ -2,6 +2,7 @@ import React, { FunctionComponent, useState } from 'react'
 import { connect } from 'react-redux'
 import Header from './components/Header'
 import List from './components/List'
+import UseList from './components/UserList'
 import './App.scss'
 
 import Forms from './components/Form'
@@ -20,6 +21,7 @@ const App: FunctionComponent<AppProps> = props => {
   return (
     <div className="App">
       <List users={users} />
+      <UseList users={users} />
       <AddUser addUser={addUser} />
     </div>
   )
