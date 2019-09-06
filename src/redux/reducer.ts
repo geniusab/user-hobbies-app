@@ -4,7 +4,7 @@ import { UsersActionTypes, ADD_USER, DELETE_USER, SELECTED_USER } from './types'
 
 export interface UsersState {
   users: Array<User>
-  selected: any
+  selected: Number | String
 }
 
 const initialState: UsersState = {

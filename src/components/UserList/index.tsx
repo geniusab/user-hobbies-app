@@ -3,27 +3,19 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
 import './styles.scss'
-import UserItem from '../UserItem/UserItem'
+import UserItem from '../UserItem'
 import ListUser from '../../interfaces/ListUsers'
-import { deleteUser } from '../../redux/actions'
+import { deleteUser, selectedUser } from '../../redux/actions'
 import User from '../../interfaces/User.interface'
+import { UsersState } from '../../redux/reducer'
 
 const UseList = (props: any): any => {
-  const [selected, setSelected] = useState<string | number>(null)
-  const { users, deleteUser } = props
-
-  const onItemSelected = (id: string | number): void => {
-    setSelected(id)
-  }
-
-  // useEffect(() => {
-  //     onItemSelected(selected)
-  // }, [selected])
+  const { users, selected, deleteUser, selectedUser } = props
 
   const elements = users.map((item: any) => {
     return (
       <li key={item.id}>
-        <UserItem selected={selected} user={item} onDeleted={() => deleteUser(item.id)} onSelected={() => onItemSelected(item.id)} />
+        <UserItem selected={selected} user={item} onDeleted={() => deleteUser(item.id)} onSelected={() => selectedUser(item.id)} />
       </li>
     )
   })
@@ -32,14 +24,12 @@ const UseList = (props: any): any => {
   return <ul className="list-group user-list">{content}</ul>
 }
 
-const mapStateToProps = (state: any) => ({ users: state.users })
-
-// UserCardList.defaultProps = {
-//     onItemSelected: () => {},
-//     deleteUser: () => {}
-// };
+const mapStateToProps = (state: UsersState) => ({
+  users: state.users,
+  selected: state.selected,
+})
 
 export default connect(
   mapStateToProps,
-  { deleteUser },
+  { deleteUser, selectedUser },
 )(UseList)

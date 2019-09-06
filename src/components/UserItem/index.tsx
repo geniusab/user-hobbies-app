@@ -14,7 +14,7 @@ const UserItem: FunctionComponent<UserItemProps> = (props: UserItemProps) => {
   let classNames = 'item-label'
   if (selected === user.id) classNames += ' selected'
   return (
-    <div>
+    <div className="user-item">
       <span className={classNames} onClick={onSelected}>
         {user.first_name}
       </span>
