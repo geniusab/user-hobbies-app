@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from 'react'
-
+import React from 'react'
 import { connect } from 'react-redux'
-
-import './styles.scss'
 import UserItem from '../UserItem'
-import ListUser from '../../interfaces/ListUsers'
 import { deleteUser, selectedUser } from '../../redux/actions'
-import User from '../../interfaces/User.interface'
 import { UsersState } from '../../redux/reducer'
+import './styles.scss'
 
 const UseList = (props: any): any => {
   const { users, selected, deleteUser, selectedUser } = props

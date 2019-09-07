@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import Header from './components/Header'
-import List from './components/List'
+
 import UseList from './components/UserList'
 import './App.scss'
 
@@ -23,6 +23,7 @@ const App: FunctionComponent<AppProps> = props => {
   const [hobbies, setSelectedHobbies] = useState<any>([])
 
   useEffect(() => {
+    console.log('hobbies_', hobbies)
     if (selected) {
       const [hobbies] = users.filter((obj: User) => obj.id === selected)
       if (hobbies) {
@@ -31,11 +32,12 @@ const App: FunctionComponent<AppProps> = props => {
     } else {
       setSelectedHobbies([])
     }
-  }, [selected])
+  }, [selected, users])
 
+  const countUser = users.length
   return (
     <div className="App">
-      <List users={users} />
+      <Header count={countUser} />
       <hr />
       <div className="wrap">
         <div className="elem">
@@ -44,9 +46,10 @@ const App: FunctionComponent<AppProps> = props => {
         </div>
         <div className="elem">
           <AddHobby addHobby={addHobby} />
-          <HobbyList hobbies={hobbies} />
+          <HobbyList />
         </div>
       </div>
+      <hr />
     </div>
   )
 }
@@ -54,7 +57,6 @@ const App: FunctionComponent<AppProps> = props => {
 const mapStateToProps = (state: any) => ({
   users: state.users,
   selected: state.selected,
-  hobbies: state.hobbies,
 })
 
 export default connect(

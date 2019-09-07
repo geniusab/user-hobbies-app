@@ -1,13 +1,17 @@
-import React from 'react';
+import React from 'react'
 import './styles.scss'
 
+type HeaderProps = {
+  count: number
+}
 
-const Header = () => {
-    const d = new Date(1933, 3, 21).toLocaleString();
-    return <header id="header">
-        User Hobbies
-        <div>{d}</div>
+const Header: React.FC<HeaderProps> = ({ count }) => {
+  return (
+    <header id="header">
+      User Hobbies
+      <div>total {count} users</div>
     </header>
+  )
 }
 
 export default Header

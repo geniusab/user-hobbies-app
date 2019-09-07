@@ -11,6 +11,7 @@ export const SELECTED_USER = 'SELECTED_USER'
 
 // Hobby
 export const ADD_HOBBY = 'ADD_HOBBY'
+export const DELETE_HOBBY = 'DELETE_HOBBY'
 
 interface AddAction {
   type: typeof ADD_USER
@@ -27,9 +28,17 @@ interface SelectedAction {
   payload: String
 }
 
+//======================================================================================================================
+// Hobby
+//----------------------------------------------------------------------------------------------------------------------
 interface AddActionHobby {
   type: typeof ADD_HOBBY
   payload: Hobby
 }
 
-export type UsersActionTypes = AddAction | DeleteAction | SelectedAction | AddActionHobby
+interface DeleteActionHobby {
+  type: typeof DELETE_HOBBY
+  payload: Number | String
+}
+
+export type UsersActionTypes = AddAction | DeleteAction | SelectedAction | AddActionHobby | DeleteActionHobby

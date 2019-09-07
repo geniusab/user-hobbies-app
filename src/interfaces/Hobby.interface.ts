@@ -1,9 +1,9 @@
-import { Passion } from "./Passion.interface";
+import { Passion } from './Passion.interface'
 
 export default interface Hobby {
-    hobby?: string;
-    year?: Date | string;
-    passion?: Passion | string
+  id?: string | number
+  userId?: string | number
+  hobby?: string
+  createdAt?: Date | string
+  passion?: Passion | string
 }
-
-

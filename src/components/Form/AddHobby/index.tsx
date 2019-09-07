@@ -22,6 +22,7 @@ const HobbyAddForm: FunctionComponent<FormAddProps> = ({ addHobby }) => {
         {(Object.keys(state) as Array<keyof typeof state>).map(input => {
           return (
             <input
+              key={input}
               placeholder={`Enter ${input}`}
               className="input"
               type={input === 'date' ? input : 'text'}
@@ -49,9 +50,10 @@ const useAddFormHook = (addHobby: Function) => {
     event.preventDefault()
     if (state.passion.trim() !== '' && state.hobby.trim() !== '') {
       const hobby: Hobby = {
+        id: uuidv1(),
         passion: state.passion,
         hobby: state.hobby,
-        year: new Date(state.date).toLocaleDateString(),
+        createdAt: new Date(state.date).toLocaleDateString(),
       }
 
       addHobby(hobby)
