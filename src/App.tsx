@@ -5,30 +5,31 @@ import List from './components/List'
 import UseList from './components/UserList'
 import './App.scss'
 
-import Forms from './components/Form'
-import mock_users from './service/mock'
 import User from './interfaces/User.interface'
-import { addUser } from './redux/actions'
+import { addHobby, addUser } from './redux/actions'
 import AddUser from './components/Form/AddUser'
 import HobbyList from './components/HobbyList'
+import AddHobby from './components/Form/AddHobby'
 
 type AppProps = {
   users: Array<User>
   addUser: Function
+  addHobby: Function
   selected: Number | String
 }
 
 const App: FunctionComponent<AppProps> = props => {
-  const { users, selected, addUser } = props
-  const [select_hobbies, setSelectedHobbies] = useState<any>([])
+  const { users, selected, addUser, addHobby } = props
+  const [hobbies, setSelectedHobbies] = useState<any>([])
 
   useEffect(() => {
     if (selected) {
       const [hobbies] = users.filter((obj: User) => obj.id === selected)
-
       if (hobbies) {
         setSelectedHobbies(hobbies.hobbies)
       }
+    } else {
+      setSelectedHobbies([])
     }
   }, [selected])
 
@@ -42,7 +43,8 @@ const App: FunctionComponent<AppProps> = props => {
           <UseList users={users} />
         </div>
         <div className="elem">
-          <HobbyList hobbies={select_hobbies} />
+          <AddHobby addHobby={addHobby} />
+          <HobbyList hobbies={hobbies} />
         </div>
       </div>
     </div>
@@ -52,9 +54,10 @@ const App: FunctionComponent<AppProps> = props => {
 const mapStateToProps = (state: any) => ({
   users: state.users,
   selected: state.selected,
+  hobbies: state.hobbies,
 })
 
 export default connect(
   mapStateToProps,
-  { addUser },
+  { addUser, addHobby },
 )(App)

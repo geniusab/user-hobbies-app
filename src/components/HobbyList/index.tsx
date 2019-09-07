@@ -26,7 +26,7 @@ const HobbyList: FunctionComponent<HobbyListProps> = (props: HobbyListProps) => 
   })
   const content = elements.length ? elements : <h4>this user dose no't have any hobbies</h4>
 
-  return <ul className="list-group user-list">{content}</ul>
+  return <ul className="list-group hobby-list">{content}</ul>
 }
 
 // const mapStateToProps = (state: UsersState) => ({

@@ -1,5 +1,6 @@
 import User from '../interfaces/User.interface'
-import { ADD_USER, DELETE_USER, SELECTED_USER } from './types'
+import Hobby from '../interfaces/Hobby.interface'
+import { ADD_HOBBY, ADD_USER, DELETE_USER, SELECTED_USER } from './types'
 
 export function addUser(newUser: User) {
   return {
@@ -19,5 +20,12 @@ export function deleteUser(id: number | string) {
   return {
     type: DELETE_USER,
     payload: id,
+  }
+}
+
+export function addHobby(newHobby: Hobby) {
+  return {
+    type: ADD_HOBBY,
+    payload: newHobby,
   }
 }

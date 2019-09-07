@@ -1,12 +1,16 @@
 // Describing the user of the user's slice of state
 // todo interface or types
 import User from '../interfaces/User.interface'
+import Hobby from '../interfaces/Hobby.interface'
 
 // Describing the different ACTION NAMES available
 
 export const ADD_USER = 'ADD_USER'
 export const DELETE_USER = 'DELETE_USER'
 export const SELECTED_USER = 'SELECTED_USER'
+
+// Hobby
+export const ADD_HOBBY = 'ADD_HOBBY'
 
 interface AddAction {
   type: typeof ADD_USER
@@ -20,7 +24,12 @@ interface DeleteAction {
 
 interface SelectedAction {
   type: typeof SELECTED_USER
-  payload: Number | String
+  payload: String
 }
 
-export type UsersActionTypes = AddAction | DeleteAction | SelectedAction
+interface AddActionHobby {
+  type: typeof ADD_HOBBY
+  payload: Hobby
+}
+
+export type UsersActionTypes = AddAction | DeleteAction | SelectedAction | AddActionHobby

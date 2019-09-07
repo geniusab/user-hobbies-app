@@ -16,7 +16,7 @@ const UserItem: FunctionComponent<UserItemProps> = (props: UserItemProps) => {
   return (
     <div className="user-item">
       <span className={classNames} onClick={onSelected}>
-        {user.first_name}
+        {user.name}
       </span>
       <button type="button" onClick={onDeleted} className="btn btn-danger">
         <i className="fa fa-trash-o" />

@@ -13,7 +13,7 @@ const HobbyList = (props: any) => {
       <tr key={key}>
         <td>{item.passion}</td>
         <td>{item.hobby}</td>
-        {/*<td>{item.year.toLocaleString()}</td>*/}
+        <td>{item.year + ''}</td>
         <td>
           <button className="btn btn-danger">Delete</button>
         </td>
