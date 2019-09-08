@@ -1,5 +1,4 @@
 // Describing the user of the user's slice of state
-// todo interface or types
 import User from '../../interfaces/User.interface'
 import Hobby from '../../interfaces/Hobby.interface'
 
@@ -10,10 +9,16 @@ export const DELETE_USER = 'DELETE_USER'
 export const SELECTED_USER = 'SELECTED_USER'
 export const LOAD_SUCCESS = 'LOAD_SUCCESS'
 export const LOAD_REQUEST = 'LOAD_REQUEST'
+export const FETCH_FAILED = 'FETCH_FAILED'
 
 // Hobby
 export const ADD_HOBBY = 'ADD_HOBBY'
 export const DELETE_HOBBY = 'DELETE_HOBBY'
+
+interface FetchFailed {
+  type: typeof FETCH_FAILED
+  payload: boolean
+}
 
 interface SendRequest {
   type: typeof LOAD_REQUEST
@@ -53,4 +58,12 @@ interface DeleteActionHobby {
   payload: Number | String
 }
 
-export type UsersActionTypes = AddAction | DeleteAction | SelectedAction | AddActionHobby | DeleteActionHobby | LoadedUsers | SendRequest
+export type UsersActionTypes =
+  | AddAction
+  | DeleteAction
+  | SelectedAction
+  | AddActionHobby
+  | DeleteActionHobby
+  | LoadedUsers
+  | SendRequest
+  | FetchFailed

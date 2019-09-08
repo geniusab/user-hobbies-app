@@ -1,7 +1,7 @@
 import { call, put } from 'redux-saga/effects'
 
 import users from './../service/user-service'
-import { loadSuccess } from './reducers/actions'
+import { fetchFailed, loadSuccess } from './reducers/actions'
 const API = new users()
 
 export function* fetchData() {
@@ -9,7 +9,6 @@ export function* fetchData() {
     const data = yield API.list()
     yield put(loadSuccess(data))
   } catch (error) {
-    console.log(error)
-    // yield put({ type: 'FETCH_FAILED', error })
+    yield put(fetchFailed())
   }
 }
