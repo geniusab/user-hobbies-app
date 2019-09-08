@@ -1,7 +1,7 @@
 // Describing the user of the user's slice of state
 // todo interface or types
-import User from '../interfaces/User.interface'
-import Hobby from '../interfaces/Hobby.interface'
+import User from '../../interfaces/User.interface'
+import Hobby from '../../interfaces/Hobby.interface'
 
 // Describing the different ACTION NAMES available
 

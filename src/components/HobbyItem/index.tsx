@@ -4,7 +4,7 @@ import Hobby from '../../interfaces/Hobby.interface'
 
 type HobbyItemProps = {
   hobby: Hobby
-  // onDeleted: (event: React.MouseEvent) => void
+  onDeleted: (event: React.MouseEvent) => void
 }
 
 const HobbyItem: FunctionComponent<HobbyItemProps> = (props: HobbyItemProps) => {
@@ -22,7 +22,7 @@ const HobbyItem: FunctionComponent<HobbyItemProps> = (props: HobbyItemProps) => 
           day: '2-digit',
         })}
       </span>
-      <button type="button" className="btn btn-danger">
+      <button type="button" className="btn btn-danger" onClick={props.onDeleted}>
         <i className="fa fa-trash-o" />
       </button>
     </div>

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent } from 'react'
 import { connect } from 'react-redux'
 import Header from './components/Header'
 
@@ -6,7 +6,7 @@ import UseList from './components/UserList'
 import './App.scss'
 
 import User from './interfaces/User.interface'
-import { addHobby, addUser } from './redux/actions'
+import { addHobby, addUser } from './redux/reducers/actions'
 import AddUser from './components/Form/AddUser'
 import HobbyList from './components/HobbyList'
 import AddHobby from './components/Form/AddHobby'
@@ -20,20 +20,16 @@ type AppProps = {
 
 const App: FunctionComponent<AppProps> = props => {
   const { users, selected, addUser, addHobby } = props
-  const [hobbies, setSelectedHobbies] = useState<any>([])
-
-  useEffect(() => {
-    console.log('hobbies_', hobbies)
-    if (selected) {
-      const [hobbies] = users.filter((obj: User) => obj.id === selected)
-      if (hobbies) {
-        setSelectedHobbies(hobbies.hobbies)
-      }
-    } else {
-      setSelectedHobbies([])
-    }
-  }, [selected, users])
-
+  const content = selected ? (
+    <>
+      {' '}
+      <AddHobby addHobby={addHobby} />
+      <HobbyList />
+    </>
+  ) : (
+    <div>Chose user</div>
+  )
+  const ClassNames = selected ? 'elem elem-100' : 'elem not_found'
   const countUser = users.length
   return (
     <div className="App">
@@ -42,12 +38,9 @@ const App: FunctionComponent<AppProps> = props => {
       <div className="wrap">
         <div className="elem">
           <AddUser addUser={addUser} />
-          <UseList users={users} />
+          <UseList />
         </div>
-        <div className="elem">
-          <AddHobby addHobby={addHobby} />
-          <HobbyList />
-        </div>
+        <div className={ClassNames}>{content}</div>
       </div>
       <hr />
     </div>

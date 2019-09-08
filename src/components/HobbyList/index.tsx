@@ -3,19 +3,21 @@ import { connect } from 'react-redux'
 import './styles.scss'
 import Hobby from '../../interfaces/Hobby.interface'
 import HobbyItem from '../HobbyItem'
-import { UsersState } from '../../redux/reducer'
+import { UsersState } from '../../redux/reducers/reducer'
+import { deleteHobby } from '../../redux/reducers/actions'
 
 type HobbyListProps = {
   hobbies: Array<Hobby>
+  deleteHobby: Function // or deleteHobby(id: string | number): void
 }
 
 const HobbyList: FunctionComponent<HobbyListProps> = (props: HobbyListProps) => {
-  const { hobbies } = props
+  const { hobbies, deleteHobby } = props
 
   const elements = hobbies.map((item, index) => {
     return (
       <li key={index}>
-        <HobbyItem hobby={item} />
+        <HobbyItem hobby={item} onDeleted={() => deleteHobby(item.id)} />
       </li>
     )
   })
@@ -30,6 +32,5 @@ const mapStateToProps = (state: UsersState) => ({
 
 export default connect(
   mapStateToProps,
-  {},
+  { deleteHobby },
 )(HobbyList)
-// export default HobbyList

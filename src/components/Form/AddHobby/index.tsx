@@ -2,6 +2,7 @@ import React, { useState, FunctionComponent } from 'react'
 import uuidv1 from 'uuid/v1'
 import './styles.scss'
 import Hobby from '../../../interfaces/Hobby.interface'
+// import { Passion } from "../../../interfaces/Passion.interface";
 
 const initState = {
   passion: '',
@@ -13,9 +14,19 @@ type FormAddProps = {
   addHobby: Function
 }
 
+/*const Passions: Passion = {
+  low: 'low',
+  medium: 'medium',
+  high: 'high',
+  very_high: 'very-high'
+}*/
+
 const HobbyAddForm: FunctionComponent<FormAddProps> = ({ addHobby }) => {
   const { add, handleChange, state } = useAddFormHook(addHobby)
-
+  // const selectedInput = <select>{
+  //         (Object.keys(Passions) as Array<keyof typeof Passions>).map(option =>
+  //             (<option value={option}>{Passions[option]}</option>)
+  //         )}</select>
   return (
     <form onSubmit={event => add(event)}>
       <div className="group">
@@ -48,6 +59,7 @@ const useAddFormHook = (addHobby: Function) => {
 
   const add = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
+
     if (state.passion.trim() !== '' && state.hobby.trim() !== '') {
       const hobby: Hobby = {
         id: uuidv1(),

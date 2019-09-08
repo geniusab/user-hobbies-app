@@ -1,7 +1,7 @@
-import User from '../interfaces/User.interface'
-import mock_users from '../service/mock'
+import User from '../../interfaces/User.interface'
+import mock_users from '../../service/mock'
 import { UsersActionTypes, ADD_USER, DELETE_USER, SELECTED_USER, ADD_HOBBY, DELETE_HOBBY } from './types'
-import Hobby from '../interfaces/Hobby.interface'
+import Hobby from '../../interfaces/Hobby.interface'
 
 export interface UsersState {
   users: Array<User>
@@ -9,13 +9,13 @@ export interface UsersState {
   selected: String
 }
 
-const initialState: UsersState = {
+const INITIAL_STATE: UsersState = {
   users: mock_users(),
-  hobbies: [],
-  selected: '',
+  hobbies: mock_users()[2].hobbies,
+  selected: '2',
 }
 
-const reducer = (state = initialState, action: UsersActionTypes): UsersState => {
+const reducer = (state = INITIAL_STATE, action: UsersActionTypes): UsersState => {
   switch (action.type) {
     case ADD_USER:
       return {
@@ -49,15 +49,9 @@ const reducer = (state = initialState, action: UsersActionTypes): UsersState => 
     }
 
     case DELETE_HOBBY: {
-      // const userId = state.selected
-      // const idx =  action.payload
-      // const userIndex = state.users.findIndex(item => item.id === userId);
-      // const hobbies = state.users.find(user => userId === user.id);
-      // const updateUser =  hobbies.hobbies.filter((item, index) => index !== idx)
       return {
         ...state,
-        // hobbies: state.hobbies.filter(hobby => hobby.id !== action.payload),
-        // users: [...state.users.splice(0, userIndex), ...state.users.splice(userIndex, +1), ...updateUser],
+        hobbies: state.hobbies.filter(hobby => hobby.id !== action.payload),
       }
     }
 

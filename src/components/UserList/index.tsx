@@ -1,14 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import UserItem from '../UserItem'
-import { deleteUser, selectedUser } from '../../redux/actions'
-import { UsersState } from '../../redux/reducer'
+import { deleteUser, selectedUser } from '../../redux/reducers/actions'
+import { UsersState } from '../../redux/reducers/reducer'
 import './styles.scss'
+import User from '../../interfaces/User.interface'
 
-const UseList = (props: any): any => {
+type UseListProps = {
+  users: User[]
+  selected: Number | String
+  deleteUser: Function
+  selectedUser: Function
+}
+
+const UseList: React.FC<UseListProps> = (props: UseListProps) => {
   const { users, selected, deleteUser, selectedUser } = props
 
-  const elements = users.map((item: any) => {
+  const elements = users.map(item => {
     return (
       <li key={item.id}>
         <UserItem selected={selected} user={item} onDeleted={() => deleteUser(item.id)} onSelected={() => selectedUser(item.id)} />
