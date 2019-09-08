@@ -15,7 +15,6 @@ type UseListProps = {
 
 const UseList: React.FC<UseListProps> = (props: UseListProps) => {
   const { users, selected, deleteUser, selectedUser } = props
-
   const elements = users.map(item => {
     return (
       <li key={item.id}>
@@ -23,7 +22,7 @@ const UseList: React.FC<UseListProps> = (props: UseListProps) => {
       </li>
     )
   })
-  const content = elements.length ? elements : <h4>not found users</h4>
+  const content = elements ? elements : <h4>not found users</h4>
 
   return <ul className="list-group user-list">{content}</ul>
 }

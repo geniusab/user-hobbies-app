@@ -8,10 +8,22 @@ import Hobby from '../../interfaces/Hobby.interface'
 export const ADD_USER = 'ADD_USER'
 export const DELETE_USER = 'DELETE_USER'
 export const SELECTED_USER = 'SELECTED_USER'
+export const LOAD_SUCCESS = 'LOAD_SUCCESS'
+export const LOAD_REQUEST = 'LOAD_REQUEST'
 
 // Hobby
 export const ADD_HOBBY = 'ADD_HOBBY'
 export const DELETE_HOBBY = 'DELETE_HOBBY'
+
+interface SendRequest {
+  type: typeof LOAD_REQUEST
+  payload: boolean
+}
+
+interface LoadedUsers {
+  type: typeof LOAD_SUCCESS
+  payload: []
+}
 
 interface AddAction {
   type: typeof ADD_USER
@@ -41,4 +53,4 @@ interface DeleteActionHobby {
   payload: Number | String
 }
 
-export type UsersActionTypes = AddAction | DeleteAction | SelectedAction | AddActionHobby | DeleteActionHobby
+export type UsersActionTypes = AddAction | DeleteAction | SelectedAction | AddActionHobby | DeleteActionHobby | LoadedUsers | SendRequest

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import Header from './components/Header'
 
@@ -6,7 +6,7 @@ import UseList from './components/UserList'
 import './App.scss'
 
 import User from './interfaces/User.interface'
-import { addHobby, addUser } from './redux/reducers/actions'
+import { addHobby, addUser, loadRequest, loadSuccess } from './redux/reducers/actions'
 import AddUser from './components/Form/AddUser'
 import HobbyList from './components/HobbyList'
 import AddHobby from './components/Form/AddHobby'
@@ -15,11 +15,13 @@ type AppProps = {
   users: Array<User>
   addUser: Function
   addHobby: Function
+  loadRequest: Function
   selected: Number | String
 }
 
 const App: FunctionComponent<AppProps> = props => {
-  const { users, selected, addUser, addHobby } = props
+  const [users, setUsers] = useState([])
+  const { selected, addUser, addHobby, loadRequest } = props
   const content = selected ? (
     <>
       {' '}
@@ -31,6 +33,12 @@ const App: FunctionComponent<AppProps> = props => {
   )
   const ClassNames = selected ? 'elem elem-100' : 'elem not_found'
   const countUser = users.length
+
+  useEffect(() => {
+    loadRequest()
+    setUsers(users)
+  }, [setUsers])
+
   return (
     <div className="App">
       <Header count={countUser} />
@@ -54,5 +62,5 @@ const mapStateToProps = (state: any) => ({
 
 export default connect(
   mapStateToProps,
-  { addUser, addHobby },
+  { addUser, addHobby, loadRequest },
 )(App)

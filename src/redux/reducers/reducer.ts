@@ -1,22 +1,37 @@
 import User from '../../interfaces/User.interface'
 import mock_users from '../../service/mock'
-import { UsersActionTypes, ADD_USER, DELETE_USER, SELECTED_USER, ADD_HOBBY, DELETE_HOBBY } from './types'
+import { UsersActionTypes, ADD_USER, DELETE_USER, SELECTED_USER, ADD_HOBBY, DELETE_HOBBY, LOAD_SUCCESS, LOAD_REQUEST } from './types'
 import Hobby from '../../interfaces/Hobby.interface'
 
 export interface UsersState {
+  loading: false
+
   users: Array<User>
   hobbies?: Array<Hobby>
   selected: String
 }
 
 const INITIAL_STATE: UsersState = {
-  users: mock_users(),
-  hobbies: mock_users()[2].hobbies,
-  selected: '2',
+  loading: false,
+  users: [],
+  hobbies: [],
+  selected: '',
 }
 
 const reducer = (state = INITIAL_STATE, action: UsersActionTypes): UsersState => {
   switch (action.type) {
+    case LOAD_REQUEST:
+      return {
+        ...state,
+      }
+    case LOAD_SUCCESS: {
+      console.log(action.payload)
+      return {
+        ...state,
+        loading: false,
+        users: action.payload,
+      }
+    }
     case ADD_USER:
       return {
         ...state,
