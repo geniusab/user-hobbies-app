@@ -1,0 +1,21 @@
+.selected {
+  background: #1890ff;
+  color: #fff;
+}
+.user-item {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+span {
+  color: #06260b;
+  background: #fff;
+  border-radius: 2px;
+  width: 150px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: keep-all;
+  padding: 0 8px;
+  margin-right: 8px;
+  transition: background-color ease-in 0.15s, ease-out color 0.1s;
+}
