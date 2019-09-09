@@ -1,7 +1,19 @@
 import User from '../../interfaces/User.interface'
 import Hobby from '../../interfaces/Hobby.interface'
-import { ADD_HOBBY, ADD_USER, DELETE_HOBBY, DELETE_USER, FETCH_FAILED, LOAD_REQUEST, LOAD_SUCCESS, SELECTED_USER } from './types'
+import {
+  ADD_HOBBY,
+  ADD_USER,
+  DELETE_HOBBY,
+  DELETE_USER,
+  FETCH_FAILED,
+  LOAD_REQUEST,
+  LOAD_SUCCESS,
+  POST_LOAD_REQUEST,
+  POST_LOAD_SUCCESS,
+  SELECTED_USER,
+} from './types'
 
+// get users
 export function loadRequest(loading: boolean) {
   return {
     type: LOAD_REQUEST,
@@ -22,6 +34,22 @@ export function fetchFailed() {
   }
 }
 
+// post user
+export function loadRequestPost(loading: boolean) {
+  return {
+    type: POST_LOAD_REQUEST,
+    payload: loading,
+  }
+}
+
+export function loadSuccessPost(newUser: User) {
+  return {
+    type: POST_LOAD_SUCCESS,
+    payload: newUser,
+  }
+}
+
+// end post user
 export function addUser(newUser: User) {
   return {
     type: ADD_USER,

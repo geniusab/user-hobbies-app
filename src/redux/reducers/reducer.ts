@@ -1,6 +1,18 @@
 import User from '../../interfaces/User.interface'
 import mock_users from '../../service/mock'
-import { UsersActionTypes, ADD_USER, DELETE_USER, SELECTED_USER, ADD_HOBBY, DELETE_HOBBY, LOAD_SUCCESS, LOAD_REQUEST, FETCH_FAILED } from './types'
+import {
+  UsersActionTypes,
+  ADD_USER,
+  DELETE_USER,
+  SELECTED_USER,
+  ADD_HOBBY,
+  DELETE_HOBBY,
+  LOAD_SUCCESS,
+  LOAD_REQUEST,
+  FETCH_FAILED,
+  POST_LOAD_SUCCESS,
+  POST_LOAD_REQUEST,
+} from './types'
 import Hobby from '../../interfaces/Hobby.interface'
 
 export interface UsersState {
@@ -20,6 +32,21 @@ const INITIAL_STATE: UsersState = {
 
 const reducer = (state = INITIAL_STATE, action: UsersActionTypes): UsersState => {
   switch (action.type) {
+    // post user
+    case POST_LOAD_REQUEST: {
+      return {
+        loading: true,
+        ...state,
+      }
+    }
+    case POST_LOAD_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        users: [...state.users, action.payload],
+      }
+    }
+    // get users
     case LOAD_REQUEST:
       return {
         loading: true,
@@ -40,11 +67,11 @@ const reducer = (state = INITIAL_STATE, action: UsersActionTypes): UsersState =>
         users: [],
       }
     }
-    case ADD_USER:
-      return {
-        ...state,
-        users: [...state.users, action.payload],
-      }
+    // case ADD_USER:
+    //   return {
+    //     ...state,
+    //     users: [...state.users, action.payload],
+    //   }
     case DELETE_USER:
       return {
         ...state,
