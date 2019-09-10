@@ -10,10 +10,27 @@ import {
   FETCH_FAILED,
   LOAD_REQUEST,
   LOAD_SUCCESS,
+  POST_HOBBY_TO_REQUEST,
+  POST_HOBBY_TO_SUCCESS,
   POST_LOAD_REQUEST,
   POST_LOAD_SUCCESS,
   SELECTED_USER,
 } from './types'
+
+// add hobby to user
+export function postHobbyRequest(loading: boolean) {
+  return {
+    type: POST_HOBBY_TO_REQUEST,
+    payload: loading,
+  }
+}
+
+export function postHobbySuccess(hobby: Hobby) {
+  return {
+    type: POST_HOBBY_TO_SUCCESS,
+    payload: hobby,
+  }
+}
 
 // get users
 export function loadRequest(loading: boolean) {

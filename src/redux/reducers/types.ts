@@ -17,10 +17,22 @@ export const POST_LOAD_REQUEST = 'POST_LOAD_REQUEST'
 // delete user
 export const DELETE_LOAD_SUCCESS = 'DELETE_LOAD_SUCCESS'
 export const DELETE_LOAD_REQUEST = 'DELETE_LOAD_REQUEST'
+// add hobby to user
+export const POST_HOBBY_TO_SUCCESS = 'POST_HOBBY_TO_SUCCESS'
+export const POST_HOBBY_TO_REQUEST = 'POST_HOBBY_TO_REQUEST'
 // Hobby
 export const ADD_HOBBY = 'ADD_HOBBY'
 export const DELETE_HOBBY = 'DELETE_HOBBY'
 
+// add hobby to user
+interface PostHobbyToUser {
+  type: typeof POST_HOBBY_TO_SUCCESS
+  payload: Hobby
+}
+interface SendRequestHobbyToUser {
+  type: typeof POST_HOBBY_TO_REQUEST
+  payload: boolean
+}
 // post user
 interface PostLoadedUser {
   type: typeof POST_LOAD_SUCCESS
@@ -54,7 +66,7 @@ interface LoadedUsers {
   type: typeof LOAD_SUCCESS
   payload: []
 }
-//
+// end
 
 interface AddAction {
   type: typeof ADD_USER
@@ -97,3 +109,5 @@ export type UsersActionTypes =
   | SendRequestPostUser
   | DeleteLoadedUser
   | SendRequestDeleteUser
+  | PostHobbyToUser
+  | SendRequestHobbyToUser

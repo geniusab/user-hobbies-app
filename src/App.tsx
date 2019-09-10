@@ -6,7 +6,7 @@ import UseList from './components/UserList'
 import './App.scss'
 
 import User from './interfaces/User.interface'
-import { addHobby, addUser, loadRequest, loadRequestPost, deleteLoadRequest } from './redux/reducers/actions'
+import { addHobby, addUser, loadRequest, loadRequestPost, deleteLoadRequest, postHobbyRequest } from './redux/reducers/actions'
 import AddUser from './components/Form/AddUser'
 import HobbyList from './components/HobbyList'
 import AddHobby from './components/Form/AddHobby'
@@ -15,17 +15,18 @@ type AppProps = {
   users: Array<User>
   loadRequestPost: Function
   addHobby: Function
+  postHobbyRequest: Function
   loadRequest: Function
   selected: Number | String
 }
 
 const App: FunctionComponent<AppProps> = props => {
   const [users, setUsers] = useState([])
-  const { selected, loadRequestPost, addHobby, loadRequest } = props
+  const { selected, loadRequestPost, addHobby, loadRequest, postHobbyRequest } = props
   const content = selected ? (
     <>
       {' '}
-      <AddHobby addHobby={addHobby} />
+      <AddHobby addHobby={postHobbyRequest} />
       <HobbyList />
     </>
   ) : (
@@ -62,5 +63,5 @@ const mapStateToProps = (state: any) => ({
 
 export default connect(
   mapStateToProps,
-  { loadRequestPost, addHobby, loadRequest },
+  { loadRequestPost, addHobby, loadRequest, postHobbyRequest },
 )(App)

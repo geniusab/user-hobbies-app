@@ -48,4 +48,16 @@ export default class AppService {
     }).then(res => res.json())
     return response
   }
+  // todo dynamic
+  async addHobby(data: any) {
+    const response = await fetch(`${this._apiBase}/5/hobbies`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data.payload),
+    }).then(res => res.json())
+    return response
+  }
 }

@@ -14,6 +14,8 @@ import {
   POST_LOAD_REQUEST,
   DELETE_LOAD_REQUEST,
   DELETE_LOAD_SUCCESS,
+  POST_HOBBY_TO_REQUEST,
+  POST_HOBBY_TO_SUCCESS,
 } from './types'
 import Hobby from '../../interfaces/Hobby.interface'
 
@@ -102,17 +104,30 @@ const reducer = (state = INITIAL_STATE, action: UsersActionTypes): UsersState =>
         hobbies: hobbies,
       }
     }
-    case ADD_HOBBY: {
-      const userId = state.selected
-      const hobbies = state.users.find(user => userId === user.id)
-      hobbies.hobbies.push(action.payload)
-
+    case POST_HOBBY_TO_REQUEST: {
       return {
+        loading: true,
         ...state,
-        hobbies: [...state.hobbies, action.payload],
-        users: [...state.users],
       }
     }
+    case POST_HOBBY_TO_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        hobbies: [...state.hobbies, action.payload],
+      }
+    }
+    // case ADD_HOBBY: {
+    //   // const userId = state.selected
+    //   // const hobbies = state.users.find(user => userId === user.id)
+    //   // hobbies.hobbies.push(action.payload)
+    //
+    //   return {
+    //     ...state,
+    //     hobbies: [...state.hobbies, action.payload],
+    //     users: [...state.users],
+    //   }
+    // }
 
     case DELETE_HOBBY: {
       return {
