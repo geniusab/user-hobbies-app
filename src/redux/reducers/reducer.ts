@@ -12,6 +12,8 @@ import {
   FETCH_FAILED,
   POST_LOAD_SUCCESS,
   POST_LOAD_REQUEST,
+  DELETE_LOAD_REQUEST,
+  DELETE_LOAD_SUCCESS,
 } from './types'
 import Hobby from '../../interfaces/Hobby.interface'
 
@@ -46,6 +48,21 @@ const reducer = (state = INITIAL_STATE, action: UsersActionTypes): UsersState =>
         users: [...state.users, action.payload],
       }
     }
+    // delete user
+    case DELETE_LOAD_REQUEST: {
+      return {
+        loading: true,
+        ...state,
+      }
+    }
+    case DELETE_LOAD_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        users: state.users.filter(user => user.id !== action.payload.id),
+        selected: '',
+      }
+    }
     // get users
     case LOAD_REQUEST:
       return {
@@ -53,7 +70,6 @@ const reducer = (state = INITIAL_STATE, action: UsersActionTypes): UsersState =>
         ...state,
       }
     case LOAD_SUCCESS: {
-      console.log(action.payload)
       return {
         ...state,
         loading: false,
@@ -72,12 +88,12 @@ const reducer = (state = INITIAL_STATE, action: UsersActionTypes): UsersState =>
     //     ...state,
     //     users: [...state.users, action.payload],
     //   }
-    case DELETE_USER:
-      return {
-        ...state,
-        users: state.users.filter(user => user.id !== action.payload),
-        selected: '',
-      }
+    // case DELETE_USER:
+    //   return {
+    //     ...state,
+    //     users: state.users.filter(user => user.id !== action.payload),
+    //     selected: '',
+    //   }
     case SELECTED_USER: {
       const { hobbies } = state.users.find(user => action.payload === user.id)
       return {

@@ -6,7 +6,7 @@ import UseList from './components/UserList'
 import './App.scss'
 
 import User from './interfaces/User.interface'
-import { addHobby, addUser, loadRequest, loadRequestPost } from './redux/reducers/actions'
+import { addHobby, addUser, loadRequest, loadRequestPost, deleteLoadRequest } from './redux/reducers/actions'
 import AddUser from './components/Form/AddUser'
 import HobbyList from './components/HobbyList'
 import AddHobby from './components/Form/AddHobby'
@@ -37,7 +37,7 @@ const App: FunctionComponent<AppProps> = props => {
   useEffect(() => {
     loadRequest()
     setUsers(users)
-  }, [setUsers])
+  }, [setUsers, loadRequest, users])
 
   return (
     <div className="App">

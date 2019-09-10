@@ -4,6 +4,8 @@ import {
   ADD_HOBBY,
   ADD_USER,
   DELETE_HOBBY,
+  DELETE_LOAD_REQUEST,
+  DELETE_LOAD_SUCCESS,
   DELETE_USER,
   FETCH_FAILED,
   LOAD_REQUEST,
@@ -48,8 +50,21 @@ export function loadSuccessPost(newUser: User) {
     payload: newUser,
   }
 }
+// delete user
+export function deleteLoadRequest(loading: boolean) {
+  return {
+    type: DELETE_LOAD_REQUEST,
+    payload: loading,
+  }
+}
 
-// end post user
+export function deleteLoadSuccess(id: any) {
+  return {
+    type: DELETE_LOAD_SUCCESS,
+    payload: id,
+  }
+}
+// end
 export function addUser(newUser: User) {
   return {
     type: ADD_USER,

@@ -14,7 +14,9 @@ export const FETCH_FAILED = 'FETCH_FAILED'
 // post user
 export const POST_LOAD_SUCCESS = 'POST_LOAD_SUCCESS'
 export const POST_LOAD_REQUEST = 'POST_LOAD_REQUEST'
-
+// delete user
+export const DELETE_LOAD_SUCCESS = 'DELETE_LOAD_SUCCESS'
+export const DELETE_LOAD_REQUEST = 'DELETE_LOAD_REQUEST'
 // Hobby
 export const ADD_HOBBY = 'ADD_HOBBY'
 export const DELETE_HOBBY = 'DELETE_HOBBY'
@@ -28,8 +30,15 @@ interface SendRequestPostUser {
   type: typeof POST_LOAD_REQUEST
   payload: boolean
 }
-//
-
+// delete user
+interface DeleteLoadedUser {
+  type: typeof DELETE_LOAD_SUCCESS
+  payload: any
+}
+interface SendRequestDeleteUser {
+  type: typeof DELETE_LOAD_REQUEST
+  payload: boolean
+}
 // get users
 interface FetchFailed {
   type: typeof FETCH_FAILED
@@ -86,3 +95,5 @@ export type UsersActionTypes =
   | FetchFailed
   | PostLoadedUser
   | SendRequestPostUser
+  | DeleteLoadedUser
+  | SendRequestDeleteUser
