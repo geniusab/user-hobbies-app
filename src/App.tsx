@@ -26,7 +26,7 @@ const App: FunctionComponent<AppProps> = props => {
   const content = selected ? (
     <>
       {' '}
-      <AddHobby addHobby={postHobbyRequest} />
+      <AddHobby addHobby={postHobbyRequest} userId={selected} />
       <HobbyList />
     </>
   ) : (

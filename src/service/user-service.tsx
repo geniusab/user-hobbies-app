@@ -49,8 +49,8 @@ export default class AppService {
     return response
   }
   // todo dynamic
-  async addHobby(data: any) {
-    const response = await fetch(`${this._apiBase}/5/hobbies`, {
+  async addHobby(data: any, userId: any) {
+    const response = await fetch(`${this._apiBase}/${userId}/hobbies`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

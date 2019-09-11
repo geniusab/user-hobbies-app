@@ -18,10 +18,11 @@ import {
 } from './types'
 
 // add hobby to user
-export function postHobbyRequest(loading: boolean) {
+export function postHobbyRequest(loading: boolean, userId?: string) {
   return {
     type: POST_HOBBY_TO_REQUEST,
     payload: loading,
+    userId: userId,
   }
 }
 

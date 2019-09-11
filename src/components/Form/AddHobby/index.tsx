@@ -13,6 +13,7 @@ const initState = {
 
 type FormAddProps = {
   addHobby: Function
+  userId: Number | String
 }
 
 const Passions: Passion = {
@@ -22,8 +23,8 @@ const Passions: Passion = {
   very_high: 'very-high',
 }
 
-const HobbyAddForm: FunctionComponent<FormAddProps> = ({ addHobby }) => {
-  const { add, handleChange, state } = useAddFormHook(addHobby)
+const HobbyAddForm: FunctionComponent<FormAddProps> = ({ addHobby, userId }) => {
+  const { add, handleChange, state } = useAddFormHook(addHobby, userId)
   // const selectedInput = <select>{
   //     (Object.keys(Passions) as Array<keyof typeof Passions>).map(option =>
   //         (<option key={option} value={state.passion}>{Passions[option]}</option>)
@@ -52,7 +53,7 @@ const HobbyAddForm: FunctionComponent<FormAddProps> = ({ addHobby }) => {
   )
 }
 
-const useAddFormHook = (addHobby: Function) => {
+const useAddFormHook = (addHobby: Function, userId: Number | String) => {
   const [state, setState] = useState(initState)
 
   const reset = () => {
@@ -69,8 +70,7 @@ const useAddFormHook = (addHobby: Function) => {
         hobby: state.hobby,
         createdAt: state.date,
       }
-
-      addHobby(hobby)
+      addHobby(hobby, userId)
       reset()
     }
   }

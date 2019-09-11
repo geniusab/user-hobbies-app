@@ -32,6 +32,7 @@ interface PostHobbyToUser {
 interface SendRequestHobbyToUser {
   type: typeof POST_HOBBY_TO_REQUEST
   payload: boolean
+  userId?: String
 }
 // post user
 interface PostLoadedUser {

@@ -134,3 +134,9 @@ input {
   font-size: 30px;
   padding: 16px;
 }
+
+.user-list {
+  .item-label {
+    cursor: pointer;
+  }
+}

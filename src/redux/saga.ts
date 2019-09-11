@@ -36,8 +36,9 @@ export function* deleteUser(id?: any) {
 // Hobby
 //----------------------------------------------------------------------------------------------------------------------
 export function* addHobbyToUser(hobby?: Hobby) {
+  const { userId } = hobby
   try {
-    const data = yield API.addHobby(hobby)
+    const data = yield API.addHobby(hobby, userId)
     yield put(postHobbySuccess(data))
   } catch (error) {
     yield put(fetchFailed())
