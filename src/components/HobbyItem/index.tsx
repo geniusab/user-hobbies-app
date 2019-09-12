@@ -15,13 +15,7 @@ const HobbyItem: FunctionComponent<HobbyItemProps> = (props: HobbyItemProps) => 
     <div className="user-item">
       <span className={classNames}>{passion}</span>
       <span className={classNames}>{hobby}</span>
-      <span className={classNames}>
-        {createdAt.toLocaleString('ru', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-        })}
-      </span>
+      <span className={classNames}>{new Date(createdAt).getFullYear()}</span>
       <button type="button" className="btn btn-danger" onClick={props.onDeleted}>
         <i className="fa fa-trash-o" />
       </button>

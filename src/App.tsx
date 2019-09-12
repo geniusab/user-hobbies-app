@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import Header from './components/Header'
 
@@ -6,38 +6,47 @@ import UseList from './components/UserList'
 import './App.scss'
 
 import User from './interfaces/User.interface'
-import { addHobby, addUser } from './redux/reducers/actions'
+import { addHobby, addUser, loadRequest, loadRequestPost, deleteLoadRequest, postHobbyRequest } from './redux/reducers/actions'
 import AddUser from './components/Form/AddUser'
 import HobbyList from './components/HobbyList'
 import AddHobby from './components/Form/AddHobby'
 
 type AppProps = {
   users: Array<User>
-  addUser: Function
+  loadRequestPost: Function
   addHobby: Function
+  postHobbyRequest: Function
+  loadRequest: Function
   selected: Number | String
 }
 
 const App: FunctionComponent<AppProps> = props => {
-  const { users, selected, addUser, addHobby } = props
+  const [users, setUsers] = useState([])
+  const { selected, loadRequestPost, addHobby, loadRequest, postHobbyRequest } = props
   const content = selected ? (
     <>
       {' '}
-      <AddHobby addHobby={addHobby} />
+      <AddHobby addHobby={postHobbyRequest} userId={selected} />
       <HobbyList />
     </>
   ) : (
     <div>Chose user</div>
   )
   const ClassNames = selected ? 'elem elem-100' : 'elem not_found'
-  const countUser = users.length
+  const countUser = props.users.length
+
+  useEffect(() => {
+    loadRequest()
+    setUsers(users)
+  }, [setUsers, loadRequest, users])
+
   return (
     <div className="App">
       <Header count={countUser} />
       <hr />
       <div className="wrap">
         <div className="elem">
-          <AddUser addUser={addUser} />
+          <AddUser addUser={loadRequestPost} />
           <UseList />
         </div>
         <div className={ClassNames}>{content}</div>
@@ -54,5 +63,5 @@ const mapStateToProps = (state: any) => ({
 
 export default connect(
   mapStateToProps,
-  { addUser, addHobby },
+  { loadRequestPost, addHobby, loadRequest, postHobbyRequest },
 )(App)
