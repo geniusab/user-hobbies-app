@@ -20,7 +20,7 @@ import {
 import Hobby from '../../interfaces/Hobby.interface'
 
 export interface UsersState {
-  loading: false
+  loading: Boolean
 
   users: Array<User>
   hobbies?: Array<Hobby>
@@ -39,8 +39,8 @@ const reducer = (state = INITIAL_STATE, action: UsersActionTypes): UsersState =>
     // post user
     case POST_LOAD_REQUEST: {
       return {
-        loading: true,
         ...state,
+        loading: true,
       }
     }
     case POST_LOAD_SUCCESS: {
@@ -52,24 +52,30 @@ const reducer = (state = INITIAL_STATE, action: UsersActionTypes): UsersState =>
     }
     // delete user
     case DELETE_LOAD_REQUEST: {
+      console.log('DELETE_LOAD_REQUEST', action)
       return {
-        loading: true,
         ...state,
+        loading: true,
       }
     }
     case DELETE_LOAD_SUCCESS: {
+      console.log('DELETE_LOAD_SUCCESS', action)
+      const id = action.payload.id
+      const idx = state.users.findIndex(el => el.id === id)
+      const newArray = [...state.users.slice(0, idx), ...state.users.slice(idx + 1)]
       return {
         ...state,
         loading: false,
-        users: state.users.filter(user => user.id !== action.payload.id),
+        users: newArray,
+        // users: state.users.filter(user => user.id !== action.payload.id),
         selected: '',
       }
     }
     // get users
     case LOAD_REQUEST:
       return {
-        loading: true,
         ...state,
+        loading: true,
       }
     case LOAD_SUCCESS: {
       return {

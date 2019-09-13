@@ -41,7 +41,7 @@ interface PostLoadedUser {
 }
 interface SendRequestPostUser {
   type: typeof POST_LOAD_REQUEST
-  payload: boolean
+  loading: any
 }
 // delete user
 interface DeleteLoadedUser {
