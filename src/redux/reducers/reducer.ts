@@ -20,7 +20,7 @@ import {
 import Hobby from '../../interfaces/Hobby.interface'
 
 export interface UsersState {
-  loading: Boolean
+  loading: boolean
 
   users: Array<User>
   hobbies?: Array<Hobby>

@@ -140,3 +140,7 @@ input {
     cursor: pointer;
   }
 }
+
+button[disabled] {
+  opacity: 0.25;
+}

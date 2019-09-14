@@ -12,7 +12,7 @@ type UseListProps = {
   deleteUser: Function
   deleteLoadRequest: Function
   selectedUser: Function
-  loading: Boolean
+  loading: boolean
 }
 
 const UseList: React.FC<UseListProps> = (props: UseListProps) => {
@@ -21,8 +21,13 @@ const UseList: React.FC<UseListProps> = (props: UseListProps) => {
   const elements = users.map(item => {
     return (
       <li key={item.id}>
-        <b>{loading + ''}</b>
-        <UserItem selected={selected} user={item} onDeleted={() => deleteLoadRequest(item.id)} onSelected={() => selectedUser(item.id)} />
+        <UserItem
+          loading={loading}
+          selected={selected}
+          user={item}
+          onDeleted={() => deleteLoadRequest(item.id)}
+          onSelected={() => selectedUser(item.id)}
+        />
       </li>
     )
   })
