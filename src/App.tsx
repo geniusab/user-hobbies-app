@@ -38,7 +38,7 @@ const App: FunctionComponent<AppProps> = props => {
   useEffect(() => {
     loadRequest()
     setUsers(users)
-  }, [setUsers, loadRequest, users])
+  }, [])
 
   return (
     <div className="App">

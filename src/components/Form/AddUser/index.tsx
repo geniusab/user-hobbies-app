@@ -1,4 +1,4 @@
-import React, { useState, FunctionComponent, ChangeEvent } from 'react'
+import React, { useState, FunctionComponent } from 'react'
 import User from '../../../interfaces/User.interface'
 import uuidv1 from 'uuid/v1'
 import './styles.scss'

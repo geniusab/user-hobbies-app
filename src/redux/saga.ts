@@ -24,9 +24,10 @@ export function* addUser(obj?: User) {
   }
 }
 
-export function* deleteUser(id?: any) {
+export function* deleteUser(payload: any) {
   try {
-    const data = yield API.delete(id)
+    console.log(payload)
+    const data = yield API.delete(payload.id)
     yield put(deleteLoadSuccess(data))
   } catch (error) {
     yield put(fetchFailed())

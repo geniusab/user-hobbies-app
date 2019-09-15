@@ -55,10 +55,9 @@ export function fetchFailed() {
 }
 
 // post user
-export function loadRequestPost(loading: boolean) {
+export function loadRequestPost() {
   return {
     type: POST_LOAD_REQUEST,
-    payload: loading,
   }
 }
 
@@ -69,17 +68,17 @@ export function loadSuccessPost(newUser: User) {
   }
 }
 // delete user
-export function deleteLoadRequest(loading: boolean) {
+export function deleteLoadRequest(id: string) {
   return {
     type: DELETE_LOAD_REQUEST,
-    payload: loading,
+    id,
   }
 }
 
-export function deleteLoadSuccess(id: any) {
+export function deleteLoadSuccess(data: User) {
   return {
     type: DELETE_LOAD_SUCCESS,
-    payload: id,
+    payload: data,
   }
 }
 // end

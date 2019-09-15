@@ -38,8 +38,8 @@ export default class AppService {
     return response
   }
 
-  async delete(id: any) {
-    const response = await fetch(`${this._apiBase}/${id.payload}`, {
+  async delete(id: string) {
+    const response = await fetch(`${this._apiBase}/${id}`, {
       method: 'DELETE',
       headers: {
         Accept: 'application/json',
