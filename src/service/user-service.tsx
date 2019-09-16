@@ -4,15 +4,7 @@ export default class AppService {
   _apiBase = 'https://5d728c255acf5e001473109f.mockapi.io/users'
 
   async read(id: string = '') {
-    const response = await fetch(`${this._apiBase}${id}`)
-    if (!response.ok) {
-      throw new Error(`Could not fetch ${id}, received ${response.status}`)
-    }
-    const body = await response.json()
-    return body
-  }
-
-  async getUser(id: string) {
+    console.log('read', id)
     const response = await fetch(`${this._apiBase}/${id}`)
     if (!response.ok) {
       throw new Error(`Could not fetch ${id}, received ${response.status}`)
@@ -48,7 +40,7 @@ export default class AppService {
     }).then(res => res.json())
     return response
   }
-  // todo dynamic
+
   async addHobby(data: any, userId: any) {
     const response = await fetch(`${this._apiBase}/${userId}/hobbies`, {
       method: 'POST',

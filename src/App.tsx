@@ -6,13 +6,15 @@ import UseList from './components/UserList'
 import './App.scss'
 
 import User from './interfaces/User.interface'
-import { addHobby, addUser, loadRequest, loadRequestPost, deleteLoadRequest, postHobbyRequest } from './redux/reducers/actions'
+import { addHobby, postHobbyRequest } from './redux/reducers/hobbies/actions'
+import { loadRequest, loadRequestPost, deleteLoadRequest } from './redux/reducers/users/actions'
 import AddUser from './components/Form/AddUser'
 import HobbyList from './components/HobbyList'
 import AddHobby from './components/Form/AddHobby'
 
 type AppProps = {
   users: Array<User>
+  hobbies: any
   loadRequestPost: Function
   addHobby: Function
   postHobbyRequest: Function
@@ -22,6 +24,7 @@ type AppProps = {
 
 const App: FunctionComponent<AppProps> = props => {
   const [users, setUsers] = useState([])
+  console.log('hobbies', props.hobbies)
   const { selected, loadRequestPost, addHobby, loadRequest, postHobbyRequest } = props
   const content = selected ? (
     <>
@@ -47,7 +50,7 @@ const App: FunctionComponent<AppProps> = props => {
       <div className="wrap">
         <div className="elem">
           <AddUser addUser={loadRequestPost} />
-          <UseList />
+          <UseList deleteUser={deleteLoadRequest} />
         </div>
         <div className={ClassNames}>{content}</div>
       </div>
@@ -59,6 +62,7 @@ const App: FunctionComponent<AppProps> = props => {
 const mapStateToProps = (state: any) => ({
   users: state.users,
   selected: state.selected,
+  hobbies: state.hobbies.hobbies,
 })
 
 export default connect(

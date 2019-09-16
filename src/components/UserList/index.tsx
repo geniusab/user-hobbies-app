@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import UserItem from '../UserItem'
-import { deleteLoadRequest, deleteUser, selectedUser } from '../../redux/reducers/actions'
-import { UsersState } from '../../redux/reducers/reducer'
+import { selectedUserRequest } from '../../redux/reducers/hobbies/actions'
+import { deleteLoadRequest } from '../../redux/reducers/users/actions'
+
 import './styles.scss'
 import User from '../../interfaces/User.interface'
 
@@ -11,13 +12,12 @@ type UseListProps = {
   selected: Number | String
   deleteUser: Function
   deleteLoadRequest: Function
-  selectedUser: Function
+  selectedUserRequest: Function
   loading: boolean
 }
 
 const UseList: React.FC<UseListProps> = (props: UseListProps) => {
-  console.log(props)
-  const { users, selected, deleteUser, selectedUser, deleteLoadRequest, loading } = props
+  const { users, selected, selectedUserRequest, deleteLoadRequest, loading } = props
   const elements = users.map(item => {
     return (
       <li key={item.id}>
@@ -26,7 +26,7 @@ const UseList: React.FC<UseListProps> = (props: UseListProps) => {
           selected={selected}
           user={item}
           onDeleted={() => deleteLoadRequest(item.id)}
-          onSelected={() => selectedUser(item.id)}
+          onSelected={() => selectedUserRequest(item.id)}
         />
       </li>
     )
@@ -35,14 +35,14 @@ const UseList: React.FC<UseListProps> = (props: UseListProps) => {
 
   return <ul className="list-group user-list">{content}</ul>
 }
-
-const mapStateToProps = (state: UsersState) => ({
-  users: state.users,
-  selected: state.selected,
-  loading: state.loading,
+// UsersState type
+const mapStateToProps = ({ users: { users, selected, loading } }: any) => ({
+  users: users,
+  selected: selected,
+  loading: loading,
 })
 
 export default connect(
   mapStateToProps,
-  { deleteUser, selectedUser, deleteLoadRequest },
+  { selectedUserRequest, deleteLoadRequest },
 )(UseList)

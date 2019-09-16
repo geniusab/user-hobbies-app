@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import './styles.scss'
 import Hobby from '../../interfaces/Hobby.interface'
 import HobbyItem from '../HobbyItem'
-import { UsersState } from '../../redux/reducers/reducer'
-import { deleteHobby } from '../../redux/reducers/actions'
+import { HobbyState } from '../../redux/reducers/hobbies'
+import { deleteHobby } from '../../redux/reducers/hobbies/actions'
 
 type HobbyListProps = {
   hobbies: Array<Hobby>
@@ -26,7 +26,7 @@ const HobbyList: FunctionComponent<HobbyListProps> = (props: HobbyListProps) => 
   return <ul className="list-group hobby-list">{content}</ul>
 }
 
-const mapStateToProps = (state: UsersState) => ({
+const mapStateToProps = (state: HobbyState) => ({
   hobbies: state.hobbies,
 })
 
