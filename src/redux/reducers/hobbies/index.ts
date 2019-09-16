@@ -4,7 +4,7 @@ import Hobby from '../../../interfaces/Hobby.interface'
 export interface HobbyState {
   loading: boolean
   hobbies?: Array<Hobby>
-  selected: string
+  selected?: string
 }
 
 const INITIAL_STATE: HobbyState = {

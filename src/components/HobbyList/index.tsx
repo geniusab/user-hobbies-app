@@ -25,9 +25,9 @@ const HobbyList: FunctionComponent<HobbyListProps> = (props: HobbyListProps) => 
 
   return <ul className="list-group hobby-list">{content}</ul>
 }
-
-const mapStateToProps = (state: HobbyState) => ({
-  hobbies: state.hobbies,
+// HobbyState
+const mapStateToProps = (state: any) => ({
+  hobbies: state.hobbies.hobbies,
 })
 
 export default connect(

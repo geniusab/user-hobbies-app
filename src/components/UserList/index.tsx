@@ -36,10 +36,10 @@ const UseList: React.FC<UseListProps> = (props: UseListProps) => {
   return <ul className="list-group user-list">{content}</ul>
 }
 // UsersState type
-const mapStateToProps = ({ users: { users, selected, loading } }: any) => ({
-  users: users,
-  selected: selected,
-  loading: loading,
+const mapStateToProps = (state: any) => ({
+  users: state.users.users,
+  selected: state.hobbies.selected,
+  loading: state.users.loading,
 })
 
 export default connect(

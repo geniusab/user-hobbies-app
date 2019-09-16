@@ -14,7 +14,7 @@ import AddHobby from './components/Form/AddHobby'
 
 type AppProps = {
   users: Array<User>
-  hobbies: any
+  hobbies?: any
   loadRequestPost: Function
   addHobby: Function
   postHobbyRequest: Function
@@ -24,8 +24,8 @@ type AppProps = {
 
 const App: FunctionComponent<AppProps> = props => {
   const [users, setUsers] = useState([])
-  console.log('hobbies', props.hobbies)
-  const { selected, loadRequestPost, addHobby, loadRequest, postHobbyRequest } = props
+
+  const { selected, loadRequestPost, loadRequest, postHobbyRequest } = props
   const content = selected ? (
     <>
       {' '}
@@ -61,8 +61,7 @@ const App: FunctionComponent<AppProps> = props => {
 
 const mapStateToProps = (state: any) => ({
   users: state.users,
-  selected: state.selected,
-  hobbies: state.hobbies.hobbies,
+  selected: state.hobbies.selected,
 })
 
 export default connect(
