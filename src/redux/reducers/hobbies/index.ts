@@ -19,7 +19,6 @@ const reducer = (state = INITIAL_STATE, action: HobbiesActionTypes): HobbyState 
     }
     case SELECTED_USER_SUCCESS: {
       // const { hobbies } = users.find((user: User) => action.payload === user.id)
-      //   console.log('cs SELECTED_USER_SUCCESS',action);
       return {
         ...state,
         selected: action.selected,

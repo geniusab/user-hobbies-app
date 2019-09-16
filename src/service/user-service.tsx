@@ -18,14 +18,14 @@ export default class AppService {
     return response
   }
 
-  async add(data: any) {
+  async add(data: User) {
     const response = await fetch(this._apiBase, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data.payload),
+      body: JSON.stringify(data),
     }).then(res => res.json())
     return response
   }

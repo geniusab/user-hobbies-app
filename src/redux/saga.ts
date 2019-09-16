@@ -17,9 +17,11 @@ export function* getUsers() {
   }
 }
 
-export function* addUser(obj?: User) {
+export function* addUser(action?: any) {
   try {
-    const data = yield API.add(obj)
+    const { user } = action.payload
+
+    const data = yield API.add(user)
     yield put(loadSuccessPost(data))
   } catch (error) {
     yield put(fetchFailed())

@@ -2,8 +2,8 @@
 // Hobby
 //----------------------------------------------------------------------------------------------------------------------
 import Hobby from '../../../interfaces/Hobby.interface'
-import { POST_LOAD_REQUEST, POST_LOAD_SUCCESS } from '../users/types'
-import User from '../../../interfaces/User.interface'
+// import { POST_LOAD_REQUEST, POST_LOAD_SUCCESS } from '../users/types'
+// import User from '../../../interfaces/User.interface'
 
 // Describing the different ACTION NAMES available
 

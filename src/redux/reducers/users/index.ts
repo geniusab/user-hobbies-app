@@ -1,16 +1,16 @@
 import User from '../../../interfaces/User.interface'
+import { UsersTypes } from './types'
 
-import {
-  DELETE_LOAD_REQUEST,
-  DELETE_LOAD_SUCCESS,
-  FETCH_FAILED,
-  LOAD_REQUEST,
-  LOAD_SUCCESS,
-  POST_LOAD_REQUEST,
-  POST_LOAD_SUCCESS,
-  SELECTED_USER,
-  UsersActionTypes,
-} from './types'
+// import {
+//   DELETE_LOAD_REQUEST,
+//   DELETE_LOAD_SUCCESS,
+//   FETCH_FAILED,
+//   LOAD_REQUEST,
+//   LOAD_SUCCESS,
+//   POST_LOAD_REQUEST,
+//   POST_LOAD_SUCCESS,
+//   UsersActionTypes,
+// } from './types'
 
 export interface UsersState {
   loading: boolean
@@ -24,51 +24,25 @@ const INITIAL_STATE: UsersState = {
   selected: '',
 }
 
-const reducer = (state = INITIAL_STATE, action: UsersActionTypes): UsersState => {
+const reducer = (state = INITIAL_STATE, action: any): UsersState => {
   switch (action.type) {
     // get users
-    case LOAD_REQUEST:
-      return {
-        ...state,
-        loading: true,
-      }
-    case LOAD_SUCCESS: {
-      return {
-        ...state,
-        loading: false,
-        users: action.payload,
-      }
-    }
-    case FETCH_FAILED: {
-      return {
-        ...state,
-        loading: false,
-        users: [],
-      }
-    }
+    case UsersTypes.GET_USERS_REQUEST:
+      return { ...state, loading: true }
+    case UsersTypes.GET_USERS_SUCCESS:
+      return { ...state, loading: false, users: action.payload.data }
+    case UsersTypes.GET_USERS_FAILED:
+      return { ...state, loading: false, users: [] }
     // post user
-    case POST_LOAD_REQUEST: {
-      return {
-        ...state,
-        loading: true,
-      }
-    }
-    case POST_LOAD_SUCCESS: {
-      return {
-        ...state,
-        loading: false,
-        users: [...state.users, action.payload],
-      }
-    }
+    case UsersTypes.POST_USERS_REQUEST:
+      return { ...state, loading: true }
+    case UsersTypes.POST_USERS_SUCCESS:
+      return { ...state, loading: false, users: [...state.users, action.payload.newUser] }
     // delete user
-    case DELETE_LOAD_REQUEST: {
-      return {
-        ...state,
-        loading: true,
-      }
-    }
-    case DELETE_LOAD_SUCCESS: {
-      console.log('DELETE_LOAD_SUCCESS', action)
+    case UsersTypes.DELETE_USERS_REQUEST:
+      return { ...state, loading: true }
+    case UsersTypes.DELETE_USERS_SUCCESS: {
+      // console.log('DELETE_LOAD_SUCCESS', action)
       const id = action.payload.id
       const idx = state.users.findIndex(el => el.id === id)
       const newArray = [...state.users.slice(0, idx), ...state.users.slice(idx + 1)]
