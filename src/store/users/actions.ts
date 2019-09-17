@@ -1,6 +1,6 @@
 import { action } from 'typesafe-actions'
-import User from '../../interfaces/User.interface'
 import { UsersTypes } from './types'
+import User from '../../interfaces/User.interface'
 
 // get users
 export const loadRequest = () => action(UsersTypes.GET_USERS_REQUEST)

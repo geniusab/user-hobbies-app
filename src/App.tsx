@@ -6,7 +6,7 @@ import UseList from './components/UserList'
 import './App.scss'
 
 import User from './interfaces/User.interface'
-import { addHobby, postHobbyRequest } from './store/hobbies/actions'
+import { postHobbyRequest } from './store/hobbies/actions'
 import { loadRequest, loadRequestPost, deleteLoadRequest } from './store/users/actions'
 import AddUser from './components/Form/AddUser'
 import HobbyList from './components/HobbyList'
@@ -16,7 +16,6 @@ type AppProps = {
   users: Array<User>
   hobbies?: any
   loadRequestPost: Function
-  addHobby: Function
   postHobbyRequest: Function
   loadRequest: Function
   selected: Number | String
@@ -66,5 +65,5 @@ const mapStateToProps = (state: any) => ({
 
 export default connect(
   mapStateToProps,
-  { loadRequestPost, addHobby, loadRequest, postHobbyRequest },
+  { loadRequestPost, loadRequest, postHobbyRequest },
 )(App)

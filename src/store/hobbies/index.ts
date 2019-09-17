@@ -1,4 +1,4 @@
-import { POST_HOBBY_TO_REQUEST, POST_HOBBY_TO_SUCCESS, DELETE_HOBBY, HobbiesActionTypes, SELECTED_USER_REQUEST, SELECTED_USER_SUCCESS } from './types'
+import { DELETE_HOBBY, HobbyTypes } from './types'
 import Hobby from '../../interfaces/Hobby.interface'
 
 export interface HobbyState {
@@ -13,37 +13,22 @@ const INITIAL_STATE: HobbyState = {
   selected: '',
 }
 
-const reducer = (state = INITIAL_STATE, action: HobbiesActionTypes): HobbyState => {
+const reducer = (state = INITIAL_STATE, action: any): HobbyState => {
   switch (action.type) {
-    case SELECTED_USER_REQUEST:
+    // get hobbies
+    case HobbyTypes.GET_HOBBY_REQUEST:
       return { ...state, loading: true }
-    case SELECTED_USER_SUCCESS: {
-      return {
-        ...state,
-        selected: action.selected,
-        hobbies: action.hobbies,
-      }
-    }
-    case POST_HOBBY_TO_REQUEST: {
-      return {
-        loading: true,
-        ...state,
-      }
-    }
-    case POST_HOBBY_TO_SUCCESS: {
-      return {
-        ...state,
-        loading: false,
-        hobbies: [...state.hobbies, action.payload],
-      }
-    }
-    case DELETE_HOBBY: {
-      return {
-        ...state,
-        hobbies: state.hobbies.filter(hobby => hobby.id !== action.payload),
-      }
-    }
-
+    case HobbyTypes.GET_HOBBY_SUCCESS:
+      console.log(action)
+      return { ...state, selected: action.payload.selected, hobbies: action.payload.hobbies }
+    // post hobby
+    case HobbyTypes.POST_HOBBY_REQUEST:
+      return { loading: true, ...state }
+    case HobbyTypes.POST_HOBBY_SUCCESS:
+      return { ...state, loading: false, hobbies: [...state.hobbies, action.payload] }
+    // delete hobby
+    case DELETE_HOBBY:
+      return { ...state, hobbies: state.hobbies.filter(hobby => hobby.id !== action.payload) }
     default:
       return state
   }

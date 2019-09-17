@@ -4,8 +4,6 @@ import users from '../service/user-service'
 import { postHobbySuccess, selectedUserSuccess } from './hobbies/actions'
 import { fetchFailed, loadSuccess, loadSuccessPost, deleteLoadSuccess } from './users/actions'
 
-import Hobby from '../interfaces/Hobby.interface'
-
 const API = new users()
 
 export function* getUsers() {
@@ -27,7 +25,6 @@ export function* addUser(action?: any) {
 }
 
 export function* deleteUser(action: any) {
-  console.log(action)
   try {
     const data = yield API.delete(action.payload)
     yield put(deleteLoadSuccess(data))
@@ -38,8 +35,9 @@ export function* deleteUser(action: any) {
 //======================================================================================================================
 // Hobby
 //----------------------------------------------------------------------------------------------------------------------
-export function* addHobbyToUser(hobby?: Hobby) {
-  const { userId } = hobby
+export function* addHobbyToUser(action?: any) {
+  const { hobby, userId } = action.payload
+  console.log(hobby)
   try {
     const data = yield API.addHobby(hobby, userId)
     yield put(postHobbySuccess(data))

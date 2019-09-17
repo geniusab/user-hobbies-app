@@ -1,4 +1,5 @@
 import User from '../interfaces/User.interface'
+import Hobby from '../interfaces/Hobby.interface'
 
 export default class AppService {
   _apiBase = 'https://5d728c255acf5e001473109f.mockapi.io/users'
@@ -41,14 +42,14 @@ export default class AppService {
     return response
   }
 
-  async addHobby(data: any, userId: any) {
+  async addHobby(data: Hobby, userId: string) {
     const response = await fetch(`${this._apiBase}/${userId}/hobbies`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data.payload),
+      body: JSON.stringify(data),
     }).then(res => res.json())
     return response
   }
