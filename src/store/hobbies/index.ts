@@ -1,4 +1,4 @@
-import { DELETE_HOBBY, HobbyTypes } from './types'
+import { HobbyTypes } from './types'
 import Hobby from '../../interfaces/Hobby.interface'
 
 export interface HobbyState {
@@ -27,8 +27,10 @@ const reducer = (state = INITIAL_STATE, action: any): HobbyState => {
     case HobbyTypes.POST_HOBBY_SUCCESS:
       return { ...state, loading: false, hobbies: [...state.hobbies, action.payload] }
     // delete hobby
-    case DELETE_HOBBY:
-      return { ...state, hobbies: state.hobbies.filter(hobby => hobby.id !== action.payload) }
+    case HobbyTypes.DELETE_HOBBY_REQUEST:
+      return { ...state, loading: true }
+    case HobbyTypes.DELETE_HOBBY_SUCCESS:
+      return { ...state, hobbies: state.hobbies.filter(hobby => hobby.id !== action.payload.id) }
     default:
       return state
   }

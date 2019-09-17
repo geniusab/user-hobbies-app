@@ -53,4 +53,15 @@ export default class AppService {
     }).then(res => res.json())
     return response
   }
+
+  async deleteHobby(id: string, userId: string) {
+    const response = await fetch(`${this._apiBase}/${userId}/hobbies/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(res => res.json())
+    return response
+  }
 }

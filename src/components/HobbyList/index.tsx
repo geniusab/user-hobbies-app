@@ -4,20 +4,21 @@ import './styles.scss'
 import Hobby from '../../interfaces/Hobby.interface'
 import HobbyItem from '../HobbyItem'
 // import { HobbyState } from '../../store/hobbies'
-import { deleteHobby } from '../../store/hobbies/actions'
+import { deleteHobbyRequest } from '../../store/hobbies/actions'
 
 type HobbyListProps = {
   hobbies: Array<Hobby>
-  deleteHobby: Function // or deleteHobby(id: string | number): void
+  deleteHobbyRequest: Function // or deleteHobby(id: string | number): void
+  selected: string | number
 }
 
 const HobbyList: FunctionComponent<HobbyListProps> = (props: HobbyListProps) => {
-  const { hobbies, deleteHobby } = props
+  const { hobbies, deleteHobbyRequest, selected } = props
 
   const elements = hobbies.map((item, index) => {
     return (
       <li key={index}>
-        <HobbyItem hobby={item} onDeleted={() => deleteHobby(item.id)} />
+        <HobbyItem hobby={item} onDeleted={() => deleteHobbyRequest(item.id, selected)} />
       </li>
     )
   })
@@ -28,9 +29,10 @@ const HobbyList: FunctionComponent<HobbyListProps> = (props: HobbyListProps) => 
 // HobbyState
 const mapStateToProps = (state: any) => ({
   hobbies: state.hobbies.hobbies,
+  selected: state.hobbies.selected,
 })
 
 export default connect(
   mapStateToProps,
-  { deleteHobby },
+  { deleteHobbyRequest },
 )(HobbyList)
