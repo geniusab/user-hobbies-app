@@ -1,17 +1,18 @@
 import React from 'react'
 import './styles.scss'
+import { Header } from './header'
 
 type HeaderProps = {
   count: number
 }
 
-const Header: React.FC<HeaderProps> = ({ count }) => {
+const AppHeader: React.FC<HeaderProps> = ({ count }) => {
   return (
-    <header id="header">
+    <Header id="header">
       User Hobbies
       <div>total {count} users</div>
-    </header>
+    </Header>
   )
 }
 
-export default Header
+export default AppHeader
