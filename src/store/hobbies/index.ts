@@ -1,5 +1,5 @@
 import { POST_HOBBY_TO_REQUEST, POST_HOBBY_TO_SUCCESS, DELETE_HOBBY, HobbiesActionTypes, SELECTED_USER_REQUEST, SELECTED_USER_SUCCESS } from './types'
-import Hobby from '../../../interfaces/Hobby.interface'
+import Hobby from '../../interfaces/Hobby.interface'
 
 export interface HobbyState {
   loading: boolean
@@ -15,10 +15,9 @@ const INITIAL_STATE: HobbyState = {
 
 const reducer = (state = INITIAL_STATE, action: HobbiesActionTypes): HobbyState => {
   switch (action.type) {
-    case SELECTED_USER_REQUEST: {
-    }
+    case SELECTED_USER_REQUEST:
+      return { ...state, loading: true }
     case SELECTED_USER_SUCCESS: {
-      // const { hobbies } = users.find((user: User) => action.payload === user.id)
       return {
         ...state,
         selected: action.selected,

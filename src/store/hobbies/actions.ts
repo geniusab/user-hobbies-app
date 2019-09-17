@@ -1,4 +1,4 @@
-import Hobby from '../../../interfaces/Hobby.interface'
+import Hobby from '../../interfaces/Hobby.interface'
 import { ADD_HOBBY, DELETE_HOBBY, POST_HOBBY_TO_REQUEST, POST_HOBBY_TO_SUCCESS, SELECTED_USER_REQUEST, SELECTED_USER_SUCCESS } from './types'
 
 export function selectedUserRequest(id: number | string) {

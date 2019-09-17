@@ -1,9 +1,9 @@
-import { call, put } from 'redux-saga/effects'
+import { put } from 'redux-saga/effects'
 
-import users from './../service/user-service'
-import { postHobbySuccess, selectedUserSuccess } from './reducers/hobbies/actions'
-import { fetchFailed, loadSuccess, loadSuccessPost, deleteLoadSuccess } from './reducers/users/actions'
-import User from '../interfaces/User.interface'
+import users from '../service/user-service'
+import { postHobbySuccess, selectedUserSuccess } from './hobbies/actions'
+import { fetchFailed, loadSuccess, loadSuccessPost, deleteLoadSuccess } from './users/actions'
+
 import Hobby from '../interfaces/Hobby.interface'
 
 const API = new users()
@@ -19,18 +19,17 @@ export function* getUsers() {
 
 export function* addUser(action?: any) {
   try {
-    const { user } = action.payload
-
-    const data = yield API.add(user)
+    const data = yield API.add(action.payload)
     yield put(loadSuccessPost(data))
   } catch (error) {
     yield put(fetchFailed())
   }
 }
 
-export function* deleteUser(payload: any) {
+export function* deleteUser(action: any) {
+  console.log(action)
   try {
-    const data = yield API.delete(payload.id)
+    const data = yield API.delete(action.payload)
     yield put(deleteLoadSuccess(data))
   } catch (error) {
     yield put(fetchFailed())

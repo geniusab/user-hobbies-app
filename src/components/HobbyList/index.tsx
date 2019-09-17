@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import './styles.scss'
 import Hobby from '../../interfaces/Hobby.interface'
 import HobbyItem from '../HobbyItem'
-import { HobbyState } from '../../redux/reducers/hobbies'
-import { deleteHobby } from '../../redux/reducers/hobbies/actions'
+// import { HobbyState } from '../../store/hobbies'
+import { deleteHobby } from '../../store/hobbies/actions'
 
 type HobbyListProps = {
   hobbies: Array<Hobby>

@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import UserItem from '../UserItem'
-import { selectedUserRequest } from '../../redux/reducers/hobbies/actions'
-import { deleteLoadRequest } from '../../redux/reducers/users/actions'
+import { selectedUserRequest } from '../../store/hobbies/actions'
+import { deleteLoadRequest } from '../../store/users/actions'
 
 import './styles.scss'
 import User from '../../interfaces/User.interface'

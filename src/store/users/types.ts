@@ -1,5 +1,3 @@
-// get users
-import User from '../../../interfaces/User.interface'
 /**
  * Action types
  */
@@ -16,17 +14,6 @@ export enum UsersTypes {
   DELETE_USERS_SUCCESS = '@users/DELETE_USERS_SUCCESS',
   DELETE_USERS_FAILED = '@users/DELETE_USERS_FAILED',
 }
-// export const LOAD_SUCCESS = 'LOAD_SUCCESS'
-// export const LOAD_REQUEST = 'LOAD_REQUEST'
-// export const FETCH_FAILED = 'FETCH_FAILED'
-// // post user
-// export const POST_LOAD_SUCCESS = 'POST_LOAD_SUCCESS'
-// export const POST_LOAD_REQUEST = 'POST_LOAD_REQUEST'
-// // delete user
-// export const DELETE_LOAD_SUCCESS = 'DELETE_LOAD_SUCCESS'
-// export const DELETE_LOAD_REQUEST = 'DELETE_LOAD_REQUEST'
-// selected user
-// export const SELECTED_USER = 'SELECTED_USER'
 
 // interface type
 // get users
