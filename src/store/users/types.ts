@@ -1,6 +1,8 @@
 /**
  * Action types
  */
+import User from '../../interfaces/User.interface'
+
 export enum UsersTypes {
   GET_USERS_REQUEST = '@users/GET_USERS_REQUEST',
   GET_USERS_SUCCESS = '@users/GET_USERS_SUCCESS',
@@ -14,48 +16,38 @@ export enum UsersTypes {
   DELETE_USERS_SUCCESS = '@users/DELETE_USERS_SUCCESS',
   DELETE_USERS_FAILED = '@users/DELETE_USERS_FAILED',
 }
+/**
+ * Type Checking Actions & Action Creators
+ * https://redux.js.org/recipes/usage-with-typescript
+ */
 
-// interface type
-// get users
-// interface FetchFailed {
-//     type: typeof FETCH_FAILED
-//     payload: boolean
-// }
-//
-// interface SendRequest {
-//     type: typeof LOAD_REQUEST
-//     payload: boolean
-// }
-//
-// interface LoadedUsers {
-//     type: typeof LOAD_SUCCESS
-//     payload: []
-// }
-//
-// interface PostLoadedUser {
-//   type: typeof POST_LOAD_SUCCESS
-//   payload: object
-// }
-// interface SendRequestPostUser {
-//   type: typeof POST_LOAD_REQUEST
-//   loading: any
-// }
-// // delete user
-// interface DeleteLoadedUser {
-//   type: typeof DELETE_LOAD_SUCCESS
-//   payload: any
-// }
-// interface SendRequestDeleteUser {
-//   type: typeof DELETE_LOAD_REQUEST
-//   payload: boolean
-// }
-//
-//
-// export type UsersActionTypes =
-//   | PostLoadedUser
-//   | SendRequestPostUser
-//   | DeleteLoadedUser
-//   | SendRequestDeleteUser
-//   | FetchFailed
-//   | SendRequest
-//   | LoadedUsers
+interface FetchFailed {
+  type: typeof UsersTypes.GET_USERS_FAILED
+  payload: boolean
+}
+interface GetRequest {
+  type: typeof UsersTypes.GET_USERS_REQUEST
+}
+interface GetSuccess {
+  type: typeof UsersTypes.GET_USERS_SUCCESS
+  payload: Array<User>
+}
+
+interface PostRequest {
+  type: typeof UsersTypes.POST_USERS_REQUEST
+  payload: User
+}
+interface PostSuccess {
+  type: typeof UsersTypes.POST_USERS_SUCCESS
+  payload: User
+}
+
+interface DeleteRequest {
+  type: typeof UsersTypes.DELETE_USERS_REQUEST
+}
+interface DeleteSuccess {
+  type: typeof UsersTypes.DELETE_USERS_SUCCESS
+  payload: User
+}
+
+export type UsersActionTypes = GetRequest | GetSuccess | PostRequest | PostSuccess | DeleteRequest | DeleteSuccess | FetchFailed

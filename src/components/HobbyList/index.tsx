@@ -10,10 +10,11 @@ type HobbyListProps = {
   hobbies: Array<Hobby>
   deleteHobbyRequest: Function // or deleteHobby(id: string | number): void
   selected: string | number
+  loading: boolean
 }
 
 const HobbyList: FunctionComponent<HobbyListProps> = (props: HobbyListProps) => {
-  const { hobbies, deleteHobbyRequest, selected } = props
+  const { selected, loading, hobbies, deleteHobbyRequest } = props
 
   const elements = hobbies.map((item, index) => {
     return (
@@ -22,7 +23,8 @@ const HobbyList: FunctionComponent<HobbyListProps> = (props: HobbyListProps) => 
       </li>
     )
   })
-  const content = elements.length ? elements : <h4>this user dose no't have any hobbies</h4>
+  const hobbiesContent = elements.length ? elements : <h4>this user dose no't have any hobbies</h4>
+  const content = loading ? 'loading...' : hobbiesContent
 
   return <ul className="list-group hobby-list">{content}</ul>
 }
@@ -30,6 +32,7 @@ const HobbyList: FunctionComponent<HobbyListProps> = (props: HobbyListProps) => 
 const mapStateToProps = (state: any) => ({
   hobbies: state.hobbies.hobbies,
   selected: state.hobbies.selected,
+  loading: state.hobbies.loading,
 })
 
 export default connect(

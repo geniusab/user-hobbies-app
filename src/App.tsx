@@ -1,30 +1,31 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import Header from './components/Header'
-
-import UseList from './components/UserList'
-import './App.scss'
 
 import User from './interfaces/User.interface'
+import { postUserRequest, getUserRequest, deleteUserRequest } from './store/users/actions'
 import { postHobbyRequest } from './store/hobbies/actions'
-import { loadRequest, loadRequestPost, deleteLoadRequest } from './store/users/actions'
+
+import Header from './components/Header'
+import UseList from './components/UserList'
 import AddUser from './components/Form/AddUser'
 import HobbyList from './components/HobbyList'
 import AddHobby from './components/Form/AddHobby'
+import './App.scss'
 
 type AppProps = {
   users: Array<User>
-  hobbies?: any
-  loadRequestPost: Function
+  getUserRequest: Function
+  postUserRequest: Function
+  deleteUserRequest: Function
   postHobbyRequest: Function
-  loadRequest: Function
+
   selected: Number | String
 }
 
 const App: FunctionComponent<AppProps> = props => {
   const [users, setUsers] = useState([])
 
-  const { selected, loadRequestPost, loadRequest, postHobbyRequest } = props
+  const { selected, getUserRequest, postUserRequest, postHobbyRequest, deleteUserRequest } = props
   const content = selected ? (
     <>
       {' '}
@@ -38,9 +39,9 @@ const App: FunctionComponent<AppProps> = props => {
   const countUser = props.users.length
 
   useEffect(() => {
-    loadRequest()
+    getUserRequest()
     setUsers(users)
-  }, [loadRequest, users])
+  }, [getUserRequest, users])
 
   return (
     <div className="App">
@@ -48,8 +49,8 @@ const App: FunctionComponent<AppProps> = props => {
       <hr />
       <div className="wrap">
         <div className="elem">
-          <AddUser addUser={loadRequestPost} />
-          <UseList deleteUser={deleteLoadRequest} />
+          <AddUser addUser={postUserRequest} />
+          <UseList deleteUser={deleteUserRequest} />
         </div>
         <div className={ClassNames}>{content}</div>
       </div>
@@ -59,11 +60,11 @@ const App: FunctionComponent<AppProps> = props => {
 }
 
 const mapStateToProps = (state: any) => ({
-  users: state.users,
+  users: state.users.users,
   selected: state.hobbies.selected,
 })
 
 export default connect(
   mapStateToProps,
-  { loadRequestPost, loadRequest, postHobbyRequest },
+  { getUserRequest, postUserRequest, postHobbyRequest, deleteUserRequest },
 )(App)

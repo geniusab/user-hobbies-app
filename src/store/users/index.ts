@@ -1,5 +1,5 @@
 import User from '../../interfaces/User.interface'
-import { UsersTypes } from './types'
+import { UsersActionTypes, UsersTypes } from './types'
 
 export interface UsersState {
   loading: boolean
@@ -13,7 +13,7 @@ const INITIAL_STATE: UsersState = {
   selected: '',
 }
 
-const reducer = (state = INITIAL_STATE, action: any): UsersState => {
+const reducer = (state = INITIAL_STATE, action: UsersActionTypes): UsersState => {
   switch (action.type) {
     // get users
     case UsersTypes.GET_USERS_REQUEST:
@@ -31,6 +31,7 @@ const reducer = (state = INITIAL_STATE, action: any): UsersState => {
     case UsersTypes.DELETE_USERS_REQUEST:
       return { ...state, loading: true }
     case UsersTypes.DELETE_USERS_SUCCESS: {
+      console.log(state)
       const id = action.payload.id
       const idx = state.users.findIndex(el => el.id === id)
       const newArray = [...state.users.slice(0, idx), ...state.users.slice(idx + 1)]

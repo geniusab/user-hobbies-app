@@ -1,5 +1,3 @@
-import Hobby from '../../interfaces/Hobby.interface'
-
 /**
  * Action types
  */
@@ -16,15 +14,6 @@ export enum HobbyTypes {
   DELETE_HOBBY_SUCCESS = '@hobby/DELETE_HOBBY_SUCCESS',
   DELETE_HOBBY_FAILED = '@hobby/DELETE_HOBBY_FAILED',
 }
-// add hobby to user
-// export const POST_HOBBY_TO_SUCCESS = 'POST_HOBBY_TO_SUCCESS'
-// export const POST_HOBBY_TO_REQUEST = 'POST_HOBBY_TO_REQUEST'
-// Hobby
-// export const ADD_HOBBY = 'ADD_HOBBY'
-// export const DELETE_HOBBY = 'DELETE_HOBBY'
-// selected
-// export const SELECTED_USER_REQUEST = 'SELECTED_USER_REQUEST'
-// export const SELECTED_USER_SUCCESS = 'SELECTED_USER_SUCCESS'
 
 // interface SelectedActionRequest {
 //   type: typeof SELECTED_USER_REQUEST

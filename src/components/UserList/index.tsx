@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import UserItem from '../UserItem'
 import { selectedUserRequest } from '../../store/hobbies/actions'
-import { deleteLoadRequest } from '../../store/users/actions'
+import { deleteUserRequest } from '../../store/users/actions'
 
 import './styles.scss'
 import User from '../../interfaces/User.interface'
@@ -11,13 +11,13 @@ type UseListProps = {
   users: User[]
   selected: Number | String
   deleteUser: Function
-  deleteLoadRequest: Function
+  deleteUserRequest: Function
   selectedUserRequest: Function
   loading: boolean
 }
 
 const UseList: React.FC<UseListProps> = (props: UseListProps) => {
-  const { users, selected, selectedUserRequest, deleteLoadRequest, loading } = props
+  const { users, selected, selectedUserRequest, deleteUserRequest, loading } = props
   const elements = users.map(item => {
     return (
       <li key={item.id}>
@@ -25,7 +25,7 @@ const UseList: React.FC<UseListProps> = (props: UseListProps) => {
           loading={loading}
           selected={selected}
           user={item}
-          onDeleted={() => deleteLoadRequest(item.id)}
+          onDeleted={() => deleteUserRequest(item.id)}
           onSelected={() => selectedUserRequest(item.id)}
         />
       </li>
@@ -44,5 +44,5 @@ const mapStateToProps = (state: any) => ({
 
 export default connect(
   mapStateToProps,
-  { selectedUserRequest, deleteLoadRequest },
+  { selectedUserRequest, deleteUserRequest },
 )(UseList)

@@ -1,8 +1,8 @@
-import React, { useState, FunctionComponent } from 'react'
+import React, { useState } from 'react'
 import uuidv1 from 'uuid/v1'
-import './styles.scss'
 import Hobby from '../../../interfaces/Hobby.interface'
 import { Passion } from '../../../interfaces/Passion.interface'
+import './styles.scss'
 
 const initState = {
   passion: 'low',
@@ -22,7 +22,7 @@ const Passions: Passion = {
   very_high: 'very-high',
 }
 
-const HobbyAddForm: FunctionComponent<FormAddProps> = ({ addHobby, userId }) => {
+const HobbyAddForm: React.FC<FormAddProps> = ({ addHobby, userId }) => {
   const { add, handleChange, state } = useAddFormHook(addHobby, userId)
   return (
     <form onSubmit={event => add(event)}>
@@ -66,9 +66,7 @@ const useAddFormHook = (addHobby: Function, userId: Number | String) => {
   }
 
   const add = (event: React.FormEvent<HTMLFormElement>): void => {
-    console.log('add')
     event.preventDefault()
-    console.log(state.passion)
     if (state.passion.trim() !== '' && state.hobby.trim() !== '') {
       const hobby: Hobby = {
         id: uuidv1(), // mock API generate id, this is not a required field right now
@@ -76,7 +74,6 @@ const useAddFormHook = (addHobby: Function, userId: Number | String) => {
         hobby: state.hobby,
         createdAt: state.date,
       }
-      console.log(hobby)
       addHobby(hobby, userId)
       reset()
     }
