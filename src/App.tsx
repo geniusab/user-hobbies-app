@@ -19,7 +19,7 @@ type AppProps = {
   deleteUserRequest: Function
   postHobbyRequest: Function
 
-  selected: Number | String
+  selected: number | string
 }
 
 const App: FunctionComponent<AppProps> = props => {

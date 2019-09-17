@@ -4,7 +4,7 @@ import './styles.scss'
 
 type UserItemProps = {
   user: User
-  selected: any
+  selected: string | number
   onDeleted: (event: React.MouseEvent) => void
   onSelected: (event: React.MouseEvent) => void
   loading: boolean
