@@ -12,7 +12,7 @@ const initState = {
 
 type FormAddProps = {
   addHobby: Function
-  userId: Number | String
+  userId: string | number
 }
 
 const Passions: Passion = {

@@ -9,7 +9,7 @@ import User from '../../interfaces/User.interface'
 
 type UseListProps = {
   users: User[]
-  selected: Number | String
+  selected: number | string
   deleteUser: Function
   deleteUserRequest: Function
   selectedUserRequest: Function
