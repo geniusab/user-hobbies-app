@@ -1,4 +1,4 @@
-import React, { useState, FunctionComponent, ChangeEvent } from 'react'
+import React, { useState } from 'react'
 import User from '../../../interfaces/User.interface'
 import uuidv1 from 'uuid/v1'
 import './styles.scss'
@@ -7,7 +7,7 @@ type AddUser = {
   addUser: Function
 }
 
-const AddUser: FunctionComponent<AddUser> = ({ addUser }) => {
+const AddUser: React.FC<AddUser> = ({ addUser }) => {
   const [name, setName] = useState('')
 
   const reset = () => {

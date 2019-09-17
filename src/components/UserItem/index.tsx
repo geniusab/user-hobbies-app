@@ -7,10 +7,11 @@ type UserItemProps = {
   selected: any
   onDeleted: (event: React.MouseEvent) => void
   onSelected: (event: React.MouseEvent) => void
+  loading: boolean
 }
 
 const UserItem: FunctionComponent<UserItemProps> = (props: UserItemProps) => {
-  const { user, onDeleted, onSelected, selected } = props
+  const { user, onDeleted, onSelected, selected, loading } = props
   let classNames = 'item-label'
   if (selected === user.id) classNames += ' selected'
   return (
@@ -18,7 +19,7 @@ const UserItem: FunctionComponent<UserItemProps> = (props: UserItemProps) => {
       <span className={classNames} onClick={onSelected}>
         {user.name}
       </span>
-      <button type="button" onClick={onDeleted} className="btn btn-danger">
+      <button type="button" disabled={loading} onClick={onDeleted} className="btn btn-danger">
         <i className="fa fa-trash-o" />
       </button>
     </div>

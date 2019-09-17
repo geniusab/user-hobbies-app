@@ -3,34 +3,39 @@ import { connect } from 'react-redux'
 import './styles.scss'
 import Hobby from '../../interfaces/Hobby.interface'
 import HobbyItem from '../HobbyItem'
-import { UsersState } from '../../redux/reducers/reducer'
-import { deleteHobby } from '../../redux/reducers/actions'
+// import { HobbyState } from '../../store/hobbies'
+import { deleteHobbyRequest } from '../../store/hobbies/actions'
 
 type HobbyListProps = {
   hobbies: Array<Hobby>
-  deleteHobby: Function // or deleteHobby(id: string | number): void
+  deleteHobbyRequest: Function // or deleteHobby(id: string | number): void
+  selected: string | number
+  loading: boolean
 }
 
 const HobbyList: FunctionComponent<HobbyListProps> = (props: HobbyListProps) => {
-  const { hobbies, deleteHobby } = props
+  const { selected, loading, hobbies, deleteHobbyRequest } = props
 
   const elements = hobbies.map((item, index) => {
     return (
       <li key={index}>
-        <HobbyItem hobby={item} onDeleted={() => deleteHobby(item.id)} />
+        <HobbyItem hobby={item} onDeleted={() => deleteHobbyRequest(item.id, selected)} />
       </li>
     )
   })
-  const content = elements.length ? elements : <h4>this user dose no't have any hobbies</h4>
+  const hobbiesContent = elements.length ? elements : <h4>this user dose no't have any hobbies</h4>
+  const content = loading ? 'loading...' : hobbiesContent
 
   return <ul className="list-group hobby-list">{content}</ul>
 }
-
-const mapStateToProps = (state: UsersState) => ({
-  hobbies: state.hobbies,
+// HobbyState
+const mapStateToProps = (state: any) => ({
+  hobbies: state.hobbies.hobbies,
+  selected: state.hobbies.selected,
+  loading: state.hobbies.loading,
 })
 
 export default connect(
   mapStateToProps,
-  { deleteHobby },
+  { deleteHobbyRequest },
 )(HobbyList)

@@ -100,7 +100,6 @@ input {
   margin: 10px;
   input {
     margin-right: 10px;
-    //width: 49%;
   }
 }
 
@@ -134,4 +133,14 @@ input {
   font-weight: 500;
   font-size: 30px;
   padding: 16px;
+}
+
+.user-list {
+  .item-label {
+    cursor: pointer;
+  }
+}
+
+button[disabled] {
+  opacity: 0.25;
 }
