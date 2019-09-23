@@ -18,15 +18,27 @@ const HobbyList: FunctionComponent<HobbyListProps> = (props: HobbyListProps) => 
 
   const elements = hobbies.map((item, index) => {
     return (
-      <li key={index}>
+      <tr key={index}>
         <HobbyItem hobby={item} onDeleted={() => deleteHobbyRequest(item.id, selected)} />
-      </li>
+      </tr>
     )
   })
-  const hobbiesContent = elements.length ? elements : <h4>this user dose no't have any hobbies</h4>
-  const content = loading ? 'loading...' : hobbiesContent
+  const hobbiesContent = elements.length ? (
+    elements
+  ) : (
+    <tr>
+      <td colSpan={4}>this user dose no't have any hobbies</td>
+    </tr>
+  )
+  const content = loading ? (
+    <tr>
+      <td colSpan={4}>loading...</td>
+    </tr>
+  ) : (
+    hobbiesContent
+  )
 
-  return <ul className="list-group hobby-list">{content}</ul>
+  return <>{content}</>
 }
 // HobbyState
 const mapStateToProps = (state: any) => ({

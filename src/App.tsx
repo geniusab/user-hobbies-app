@@ -10,7 +10,9 @@ import UseList from './components/UserList'
 import AddUser from './components/Form/AddUser'
 import HobbyList from './components/HobbyList'
 import AddHobby from './components/Form/AddHobby'
-import './App.scss'
+import DataTable from './components/HobbyList/DataTable'
+
+import Container from './containers/Container'
 
 type AppProps = {
   users: Array<User>
@@ -30,10 +32,12 @@ const App: FunctionComponent<AppProps> = props => {
     <>
       {' '}
       <AddHobby addHobby={postHobbyRequest} userId={selected} />
-      <HobbyList />
+      <DataTable columns={['Passion', 'Hobby', 'Year', 'Action']}>
+        <HobbyList />
+      </DataTable>
     </>
   ) : (
-    <div>Chose user</div>
+    <AddHobby addHobby={postHobbyRequest} userId={selected} />
   )
   const ClassNames = selected ? 'elem elem-100' : 'elem not_found'
   const countUser = props.users.length
@@ -44,17 +48,15 @@ const App: FunctionComponent<AppProps> = props => {
   }, [getUserRequest, users])
 
   return (
-    <div className="App">
+    <div>
       <Header count={countUser} />
-      <hr />
-      <div className="wrap">
+      <Container className="wrap">
         <div className="elem">
           <AddUser addUser={postUserRequest} />
           <UseList deleteUser={deleteUserRequest} />
         </div>
         <div className={ClassNames}>{content}</div>
-      </div>
-      <hr />
+      </Container>
     </div>
   )
 }
