@@ -3,7 +3,7 @@ import 'styled-components'
 
 // and extend them!
 declare module 'styled-components' {
-  export interface Theme {
+  export interface DefaultTheme {
     colors: {
       white: string
       body: string
@@ -13,6 +13,10 @@ declare module 'styled-components' {
       tableOdd: string
       borders: string
     }
+    widths: {
+      xl: string
+    }
+
     breakpoints: {
       xs: string
       sm: string

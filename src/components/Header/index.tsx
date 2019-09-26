@@ -41,8 +41,9 @@ export default Header
 
 const Wrapper = styled('header')`
   padding: 0.5rem 1.5rem;
+  min-height: 64px;
   background-color: ${props => props.theme.colors.brand};
-  box-shadow: 0 2px 8px #f0f1f2;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 `
 
 const HeaderInner = styled('div')`
@@ -50,7 +51,7 @@ const HeaderInner = styled('div')`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-
+  height: 100%;
   @media (min-width: ${props => props.theme.breakpoints.lg}) {
     flex-direction: row;
   }

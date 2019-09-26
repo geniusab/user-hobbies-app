@@ -3,6 +3,6 @@ import normalize from './normalize'
 import common from './common'
 
 export const GlobalStyle = createGlobalStyle`
-  ${normalize},
+  ${normalize}
   ${common}
 `

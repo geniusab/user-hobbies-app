@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import User from '../../../interfaces/User.interface'
 import uuidv1 from 'uuid/v1'
 import './styles.scss'
+import ButtonM from '../../../containers/shared/Button'
+import { Input, InputWrap } from '../../../containers/shared/Input'
 
 type AddUser = {
   addUser: Function
@@ -33,10 +35,11 @@ const AddUser: React.FC<AddUser> = ({ addUser }) => {
   return (
     <form className="form-user" onSubmit={event => add(event)}>
       <div className="group">
-        <input className="input" type="text" value={name} onChange={handleChange} />
-        <button className="btn btn-primary" type="submit">
-          Add
-        </button>
+        <InputWrap>
+          <Input type="text" value={name} onChange={handleChange} placeholder={'Enter name'} />
+        </InputWrap>
+
+        <ButtonM color={'primary'}>Add</ButtonM>
       </div>
     </form>
   )

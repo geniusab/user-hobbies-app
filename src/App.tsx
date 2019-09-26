@@ -13,6 +13,7 @@ import AddHobby from './components/Form/AddHobby'
 import DataTable from './components/HobbyList/DataTable'
 
 import Container from './containers/Container'
+import Row from './containers/Row'
 
 type AppProps = {
   users: Array<User>
@@ -50,12 +51,16 @@ const App: FunctionComponent<AppProps> = props => {
   return (
     <div>
       <Header count={countUser} />
-      <Container className="wrap">
-        <div className="elem">
-          <AddUser addUser={postUserRequest} />
-          <UseList deleteUser={deleteUserRequest} />
-        </div>
-        <div className={ClassNames}>{content}</div>
+      <Container mt_20>
+        <Row>
+          {/* users */}
+          <div>
+            <AddUser addUser={postUserRequest} />
+            <UseList deleteUser={deleteUserRequest} />
+          </div>
+          {/* hobbies */}
+          <div className={ClassNames}>{content}</div>
+        </Row>
       </Container>
     </div>
   )
