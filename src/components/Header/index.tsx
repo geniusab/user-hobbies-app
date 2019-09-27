@@ -20,9 +20,6 @@ const Header: React.FC<HeaderProps> = props => {
       <HeaderInner>
         <Title>User Hobbies</Title>
         <HeaderRight>Total {props.count} users</HeaderRight>
-        {/*<SiteThemeContext.Consumer>*/}
-        {/*<ThemeSwitcherButton>aad</ThemeSwitcherButton>*/}
-        {/*</SiteThemeContext.Consumer>*/}
         <ThemLayout>
           {({ theme, setTheme }) => (
             <ThemeSwitcherButton onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>Light Mode {theme}</ThemeSwitcherButton>
@@ -32,11 +29,7 @@ const Header: React.FC<HeaderProps> = props => {
     </Wrapper>
   )
 }
-// const mapStateToProps = (state: any) => ({
-//     theme: state.layout.theme
-// })
-//
-// export default connect(mapStateToProps, {setTheme})(Header)
+
 export default Header
 
 const Wrapper = styled('header')`

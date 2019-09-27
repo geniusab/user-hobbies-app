@@ -18,6 +18,7 @@ const ButtonM = styled('button')`
     }
   }};
   color: ${props => props.theme.colors.white};
+  text-transform: uppercase;
   box-sizing: border-box;
   position: relative;
   user-select: none;
@@ -36,13 +37,13 @@ const ButtonM = styled('button')`
   padding: 0 16px;
   border-radius: 4px;
   overflow: visible;
-  transform: translate3d(0, 0, 0);
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
   transition: background 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {
-    background-color: #333;
-    color: ${props => props.theme.colors.white};
+    background: ${props => props.theme.colors.white};
+    color: ${props => props.theme.colors.brand};
   }
 `
 

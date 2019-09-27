@@ -10,7 +10,7 @@ type UserItemProps = {
   loading: boolean
 }
 interface Props {
-  selected?: boolean
+  selected?: boolean | string
 }
 
 const UserItem: FunctionComponent<UserItemProps> = (props: UserItemProps) => {
@@ -37,27 +37,39 @@ const UserWrap = styled('div')`
 `
 
 const UserName = styled('span')`
+  cursor: pointer;
   height: 48px;
   font-family: inherit;
   font-size: 1.125rem;
   line-height: 36px;
   color: #999;
-  background: ${(props: Props) => (props.selected ? '#333' : 'white')};
+  background: ${(props: Props) => (props.selected ? 'red' : 'blue')};
   width: 150px;
   text-overflow: ellipsis;
   overflow: hidden;
   word-break: keep-all;
   padding: 0 8px;
   margin-right: 8px;
-  transition: background-color ease-in 0.15s, ease-out color 0.1s;
+  //transition: background-color ease-in 0.15s, ease-out color 0.1s;
   border-bottom: 1px solid ${props => props.theme.colors.borders};
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 `
 
 const Button = styled('button')`
+  display: inline-block;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
   background-color: ${props => props.theme.colors.brand};
   color: ${props => props.theme.colors.white};
+  padding: 0.25rem 0.5rem;
+  border: 1px solid ${props => props.theme.colors.brand};
+  border-radius: 3px;
   &:disabled {
-    opacity: 0.25;
+    opacity: 0.87;
   }
   &:hover,
   &:focus {
