@@ -75,7 +75,7 @@ const Button = styled('button')`
   border: 1px solid ${props => props.theme.colors.brand};
   border-radius: 3px;
   &:disabled {
-    opacity: 0.87;
+    opacity: 0.25;
   }
   &:hover,
   &:focus {

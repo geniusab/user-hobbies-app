@@ -21,11 +21,15 @@ const WrapIcon = styled.button`
     font-size: 16px;
   }
 
-  &:hover,
-  &:focus {
+  &:active:hover:not([disabled]),
+  &:focus:not([disabled]) {
     background: ${props => props.theme.colors.white};
     color: ${props => props.theme.colors.brand};
     box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+  &:disabled {
+    cursor: default;
+    opacity: 0.25;
   }
 `
 

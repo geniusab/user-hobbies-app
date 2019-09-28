@@ -43,6 +43,9 @@ const Button = styled('button')<PropsButton>`
     background: ${props => props.theme.colors.white};
     color: ${props => props.theme.colors.brand};
   }
+  &:disabled {
+    opacity: 0.25;
+  }
 `
 
 export default Button
