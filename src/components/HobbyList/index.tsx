@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent, useCallback, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
 import Hobby from '../../interfaces/Hobby.interface'
@@ -17,10 +17,13 @@ type HobbyListProps = {
 const HobbyList: FunctionComponent<HobbyListProps> = (props: HobbyListProps) => {
   const [deleteId, setDeleteId] = useState(null)
   const { selected, loading, hobbies, deleteHobbyRequest } = props
-  const deleteProcess = (id?: string | number, selected?: string | number) => {
-    setDeleteId(id)
-    deleteHobbyRequest(id, selected)
-  }
+  const deleteProcess = useCallback(
+    (id?: string | number, selected?: string | number) => {
+      setDeleteId(id)
+      deleteHobbyRequest(id, selected)
+    },
+    [deleteHobbyRequest],
+  )
   // clear deleteId after call deleteProcess
   useEffect(() => {
     if (!loading) setDeleteId(null)
@@ -31,14 +34,12 @@ const HobbyList: FunctionComponent<HobbyListProps> = (props: HobbyListProps) => 
       <>
         {deleteId === item.id ? (
           <tr>
-            <b>{deleteId}</b>
             <td colSpan={4}>
               <Loading>loading...</Loading>
             </td>
           </tr>
         ) : (
           <tr key={index}>
-            <b>{deleteId}</b>
             <HobbyItem isLoading={loading} hobby={item} onDeleted={() => deleteProcess(item.id, selected)} />
           </tr>
         )}
