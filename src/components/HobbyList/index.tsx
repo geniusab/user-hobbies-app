@@ -31,7 +31,7 @@ const HobbyList: FunctionComponent<HobbyListProps> = (props: HobbyListProps) => 
 
   const elements = hobbies.map((item, index) => {
     return (
-      <>
+      <React.Fragment key={index}>
         {deleteId === item.id ? (
           <tr>
             <td colSpan={4}>
@@ -39,11 +39,11 @@ const HobbyList: FunctionComponent<HobbyListProps> = (props: HobbyListProps) => 
             </td>
           </tr>
         ) : (
-          <tr key={index}>
+          <tr>
             <HobbyItem isLoading={loading} hobby={item} onDeleted={() => deleteProcess(item.id, selected)} />
           </tr>
         )}
-      </>
+      </React.Fragment>
     )
   })
   const hobbiesContent = elements.length ? (

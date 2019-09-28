@@ -9,7 +9,6 @@ type HobbyItemProps = {
 }
 
 const HobbyItem: FunctionComponent<HobbyItemProps> = (props: HobbyItemProps) => {
-  console.log(props)
   const { passion, hobby, createdAt } = props.hobby
   const { isLoading } = props
 
