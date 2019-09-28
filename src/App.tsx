@@ -15,6 +15,7 @@ import { Container, ContentWrap } from './containers/Container'
 // containers
 import Row from './containers/Row'
 import DataTable from './containers/shared/DataTable'
+import { ApplicationState } from './store'
 
 type AppProps = {
   users: Array<User>
@@ -66,9 +67,9 @@ const App: FunctionComponent<AppProps> = props => {
   )
 }
 
-const mapStateToProps = (state: any) => ({
-  users: state.users.users,
-  selected: state.hobbies.selected,
+const mapStateToProps = ({ users, hobbies }: ApplicationState) => ({
+  users: users.users,
+  selected: hobbies.selected,
 })
 
 export default connect(

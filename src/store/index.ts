@@ -3,6 +3,16 @@ import createSagaMiddleware from 'redux-saga'
 
 import rootReducer from './rootReducer'
 import rootSaga from './rootSaga'
+import { LayoutState } from './layout/types'
+import { UsersState } from './users'
+import { HobbyState } from './hobbies'
+
+// The top-level state object
+export interface ApplicationState {
+  layout: LayoutState
+  users: UsersState
+  hobbies: HobbyState
+}
 
 const devTools: any = (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 const sagaMiddleware = createSagaMiddleware()

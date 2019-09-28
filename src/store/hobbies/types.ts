@@ -14,7 +14,11 @@ export enum HobbyTypes {
   DELETE_HOBBY_SUCCESS = '@hobby/DELETE_HOBBY_SUCCESS',
   DELETE_HOBBY_FAILED = '@hobby/DELETE_HOBBY_FAILED',
 }
-
+/**
+ * Type Checking Actions & Action Creators
+ * https://redux.js.org/recipes/usage-with-typescript
+ */
+// ...
 // interface SelectedActionRequest {
 //   type: typeof SELECTED_USER_REQUEST
 //   selected: string
