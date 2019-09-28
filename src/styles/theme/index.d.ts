@@ -24,5 +24,11 @@ declare module 'styled-components' {
       lg: string
       xl: string
     }
+
+    input: {
+      background: string
+      color: string
+      borderBottom: string
+    }
   }
 }

@@ -2,11 +2,14 @@ import { DefaultTheme } from 'styled-components'
 
 const lightTheme: DefaultTheme = {
   colors: {
-    white: '#fff',
-    body: '#121212',
-    font: '#999',
+    body: '#212121', // wrap color
+    brand: '#333333', // inner color
+    danger: '#f44336', // red color
+    green: '#61b25a',
 
-    brand: '#333333',
+    white: '#fff',
+
+    font: '#999',
 
     borders: '#7d7e7f',
     tableOdd: '#3b3b38',
@@ -29,11 +32,8 @@ const lightTheme: DefaultTheme = {
 
   // Text Inputs + Textarea
   input: {
-    height: '1.1875em',
     background: '#999',
-    fontSize: '16px',
-    marginBottom: '8px',
-    color: '#222',
+    color: '#fff',
     borderBottom: '1px solid #3b3b38',
   },
 }

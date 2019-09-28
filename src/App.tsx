@@ -10,10 +10,11 @@ import UseList from './components/UserList'
 import AddUser from './components/Form/AddUser'
 import HobbyList from './components/HobbyList'
 import AddHobby from './components/Form/AddHobby'
-import DataTable from './components/HobbyList/DataTable'
 
-import Container from './containers/Container'
+import { Container, ContentWrap } from './containers/Container'
+// containers
 import Row from './containers/Row'
+import DataTable from './containers/shared/DataTable'
 
 type AppProps = {
   users: Array<User>
@@ -31,7 +32,6 @@ const App: FunctionComponent<AppProps> = props => {
   const { selected, getUserRequest, postUserRequest, postHobbyRequest, deleteUserRequest } = props
   const content = selected ? (
     <>
-      {' '}
       <AddHobby addHobby={postHobbyRequest} userId={selected} />
       <DataTable columns={['Passion', 'Hobby', 'Year', 'Action']}>
         <HobbyList />
@@ -40,7 +40,7 @@ const App: FunctionComponent<AppProps> = props => {
   ) : (
     <AddHobby addHobby={postHobbyRequest} userId={selected} />
   )
-  const ClassNames = selected ? 'elem elem-100' : 'elem not_found'
+
   const countUser = props.users.length
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const App: FunctionComponent<AppProps> = props => {
             <UseList deleteUser={deleteUserRequest} />
           </div>
           {/* hobbies */}
-          <div className={ClassNames}>{content}</div>
+          <ContentWrap margin={'mlr_16'}>{content}</ContentWrap>
         </Row>
       </Container>
     </div>

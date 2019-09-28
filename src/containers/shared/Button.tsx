@@ -1,13 +1,11 @@
 import styled from 'styled-components'
 
 interface PropsButton {
-  danger?: boolean
-  primary?: boolean
   color?: string
 }
 
-const ButtonM = styled('button')`
-  background-color: ${(props: PropsButton | any) => {
+const Button = styled('button')<PropsButton>`
+  background-color: ${props => {
     switch (props.color) {
       case 'danger':
         return '#ab003c'
@@ -35,7 +33,7 @@ const ButtonM = styled('button')`
   min-width: 64px;
   line-height: 36px;
   padding: 0 16px;
-  border-radius: 4px;
+  border-radius: 2px;
   overflow: visible;
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
   transition: background 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -47,4 +45,4 @@ const ButtonM = styled('button')`
   }
 `
 
-export default ButtonM
+export default Button

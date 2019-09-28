@@ -28,12 +28,9 @@ const lightTheme: DefaultTheme = {
 
   // Text Inputs + Textarea
   input: {
-    height: '1.1875em',
-    background: '#1a1a1a',
-    fontSize: '16px',
-    marginBottom: '8px',
-    color: '#e5e5e3',
-    borderBottom: '1px solid #ebebea',
+    background: '#f5f5f5',
+    color: '#222',
+    borderBottom: '1px solid #3b3b38',
   },
 }
 

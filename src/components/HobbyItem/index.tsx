@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
-import './styles.scss'
 import Hobby from '../../interfaces/Hobby.interface'
+import { WrapIcon } from '../../containers/shared'
 
 type HobbyItemProps = {
   hobby: Hobby
@@ -17,9 +17,9 @@ const HobbyItem: FunctionComponent<HobbyItemProps> = (props: HobbyItemProps) => 
       <td className={classNames}>{hobby}</td>
       <td className={classNames}>{new Date(createdAt).getFullYear()}</td>
       <td>
-        <button type="button" className="btn btn-danger" onClick={props.onDeleted}>
+        <WrapIcon type="button" onClick={props.onDeleted}>
           <i className="fa fa-trash-o" />
-        </button>
+        </WrapIcon>
       </td>
     </>
   )

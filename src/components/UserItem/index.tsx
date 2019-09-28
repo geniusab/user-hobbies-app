@@ -9,19 +9,17 @@ type UserItemProps = {
   onSelected: (event: React.MouseEvent) => void
   loading: boolean
 }
-interface Props {
-  selected?: boolean | string
+
+export interface SelectedAttributeProps {
+  selected?: boolean
 }
 
 const UserItem: FunctionComponent<UserItemProps> = (props: UserItemProps) => {
   const { user, onDeleted, onSelected, selected, loading } = props
 
   return (
-    <UserWrap>
-      <UserName selected={selected === user.id} onClick={onSelected}>
-        {' '}
-        {user.name}
-      </UserName>
+    <UserWrap selected={selected === user.id}>
+      <UserName onClick={onSelected}>{user.name}</UserName>
       <Button type="button" disabled={loading} onClick={onDeleted} className="btn btn-danger">
         <i className="fa fa-trash-o" />
       </Button>
@@ -31,9 +29,25 @@ const UserItem: FunctionComponent<UserItemProps> = (props: UserItemProps) => {
 
 export default UserItem
 
-const UserWrap = styled('div')`
+const UserWrap = styled('div')<SelectedAttributeProps>`
   display: flex;
-  margin-bottom: 8px;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border-radius: 2px;
+  overflow: hidden;
+  padding: 0 8px;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  background-color: ${props => (props.selected ? props.theme.colors.borders : props.theme.colors.brand)};
+  border-bottom: 1px solid ${props => (props.selected ? props.theme.colors.danger : props.theme.colors.borders)};
+  color: ${props => (props.selected ? props.theme.colors.brand : props.theme.colors.white)};
+  align-items: center;
+  &:hover,
+  &:focus {
+    color: ${props => (props.selected ? props.theme.colors.font : props.theme.colors.white)};
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 `
 
 const UserName = styled('span')`
@@ -41,21 +55,13 @@ const UserName = styled('span')`
   height: 48px;
   font-family: inherit;
   font-size: 1.125rem;
-  line-height: 36px;
-  color: #999;
-  background: ${(props: Props) => (props.selected ? 'red' : 'blue')};
-  width: 150px;
+  display: flex;
+  align-items: center;
+  width: 220px;
   text-overflow: ellipsis;
   overflow: hidden;
   word-break: keep-all;
   padding: 0 8px;
-  margin-right: 8px;
-  //transition: background-color ease-in 0.15s, ease-out color 0.1s;
-  border-bottom: 1px solid ${props => props.theme.colors.borders};
-  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
 `
 
 const Button = styled('button')`
@@ -76,7 +82,7 @@ const Button = styled('button')`
     background-color: #333;
     color: ${props => props.theme.colors.white};
     i {
-      color: ${props => props.theme.colors.brand};
+      color: ${props => props.theme.colors.white};
     }
   }
 `

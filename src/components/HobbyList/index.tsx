@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import { connect } from 'react-redux'
-import './styles.scss'
+
 import Hobby from '../../interfaces/Hobby.interface'
 import HobbyItem from '../HobbyItem'
 // import { HobbyState } from '../../store/hobbies'
@@ -27,7 +27,7 @@ const HobbyList: FunctionComponent<HobbyListProps> = (props: HobbyListProps) => 
     elements
   ) : (
     <tr>
-      <td colSpan={4}>this user dose no't have any hobbies</td>
+      <td colSpan={4}>This user does not have any hobbies.</td>
     </tr>
   )
   const content = loading ? (

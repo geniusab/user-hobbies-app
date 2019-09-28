@@ -1,11 +1,6 @@
 import React from 'react'
-// import './styles.scss'
-// import { Header } from './header'
 import styled from 'styled-components'
-// import {setTheme} from "../../store/layout/actions";
-// import {connect} from "react-redux";
 import ThemLayout from '../../containers/ThemLayout'
-// import {SiteThemeContext} from "../../containers/ThemLayout";
 
 type HeaderProps = {
   count?: number
@@ -14,7 +9,6 @@ type HeaderProps = {
 }
 
 const Header: React.FC<HeaderProps> = props => {
-  console.log(props)
   return (
     <Wrapper>
       <HeaderInner>
@@ -22,7 +16,7 @@ const Header: React.FC<HeaderProps> = props => {
         <HeaderRight>Total {props.count} users</HeaderRight>
         <ThemLayout>
           {({ theme, setTheme }) => (
-            <ThemeSwitcherButton onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>Light Mode {theme}</ThemeSwitcherButton>
+            <ThemeSwitcherButton onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>Mode {theme}</ThemeSwitcherButton>
           )}
         </ThemLayout>
       </HeaderInner>
@@ -78,5 +72,6 @@ const ThemeSwitcherButton = styled('button')`
   &:focus {
     background-color: transparent;
     color: ${props => props.theme.colors.white};
+    box-shadow: 0 0 0 0.2rem #757ce8;
   }
 `
