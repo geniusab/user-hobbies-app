@@ -34,12 +34,13 @@ const Wrapper = styled('header')`
 `
 
 const HeaderInner = styled('div')`
+  min-height: inherit;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  @media (min-width: ${props => props.theme.breakpoints.lg}) {
+  @media (min-width: ${props => props.theme.breakpoints.md}) {
     flex-direction: row;
   }
 `
@@ -51,7 +52,6 @@ const Title = styled('h2')`
 `
 
 const HeaderRight = styled('div')`
-  padding-left: 1rem;
   color: ${props => props.theme.colors.white};
 `
 

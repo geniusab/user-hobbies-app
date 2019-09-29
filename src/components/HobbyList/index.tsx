@@ -1,11 +1,10 @@
-import React, { FunctionComponent, useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
+import styled from 'styled-components'
 import { connect } from 'react-redux'
-
+import { ApplicationState } from '../../store'
 import Hobby from '../../interfaces/Hobby.interface'
 import HobbyItem from '../HobbyItem'
-// import { HobbyState } from '../../store/hobbies'
 import { deleteHobbyRequest } from '../../store/hobbies/actions'
-import styled from 'styled-components'
 
 type HobbyListProps = {
   hobbies: Array<Hobby>
@@ -14,7 +13,7 @@ type HobbyListProps = {
   loading: boolean
 }
 
-const HobbyList: FunctionComponent<HobbyListProps> = (props: HobbyListProps) => {
+const HobbyList: React.FC<HobbyListProps> = (props: HobbyListProps) => {
   const [deleteId, setDeleteId] = useState(null)
   const { selected, loading, hobbies, deleteHobbyRequest } = props
   const deleteProcess = useCallback(
@@ -64,11 +63,14 @@ const HobbyList: FunctionComponent<HobbyListProps> = (props: HobbyListProps) => 
 
   return <>{content}</>
 }
-// HobbyState
-const mapStateToProps = (state: any) => ({
-  hobbies: state.hobbies.hobbies,
-  selected: state.hobbies.selected,
-  loading: state.hobbies.loading,
+
+// It's usually good practice to only include one context at a time in a connected component.
+// Although if necessary, you can always include multiple contexts. Just make sure to
+// separate them from each other to prevent prop conflicts.
+const mapStateToProps = ({ hobbies }: ApplicationState) => ({
+  hobbies: hobbies.hobbies,
+  selected: hobbies.selected,
+  loading: hobbies.loading,
 })
 
 export default connect(

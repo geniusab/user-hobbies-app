@@ -1,21 +1,21 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-
 import User from './interfaces/User.interface'
+// redux
 import { postUserRequest, getUserRequest, deleteUserRequest } from './store/users/actions'
 import { postHobbyRequest } from './store/hobbies/actions'
-
+// components
 import Header from './components/Header'
 import UseList from './components/UserList'
 import AddUser from './components/Form/AddUser'
 import HobbyList from './components/HobbyList'
 import AddHobby from './components/Form/AddHobby'
-
-import { Container, ContentWrap } from './containers/Container'
 // containers
+import { Container, ContentWrap } from './containers/Container'
 import Row from './containers/Row'
 import DataTable from './containers/shared/DataTable'
 import { ApplicationState } from './store'
+import styled from 'styled-components'
 
 type AppProps = {
   users: Array<User>
@@ -39,7 +39,9 @@ const App: FunctionComponent<AppProps> = props => {
       </DataTable>
     </>
   ) : (
-    <AddHobby addHobby={postHobbyRequest} userId={selected} />
+    <Container mt_20>
+      <h2>Chose user</h2>
+    </Container>
   )
 
   const countUser = props.users.length
@@ -50,23 +52,25 @@ const App: FunctionComponent<AppProps> = props => {
   }, [getUserRequest, users])
 
   return (
-    <div>
+    <>
       <Header count={countUser} />
       <Container mt_20>
         <Row>
           {/* users */}
-          <div>
+          <WrapUser>
             <AddUser addUser={postUserRequest} />
             <UseList deleteUser={deleteUserRequest} />
-          </div>
+          </WrapUser>
           {/* hobbies */}
           <ContentWrap margin={'mlr_16'}>{content}</ContentWrap>
         </Row>
       </Container>
-    </div>
+    </>
   )
 }
-
+// It's usually good practice to only include one context at a time in a connected component.
+// Although if necessary, you can always include multiple contexts. Just make sure to
+// separate them from each other to prevent prop conflicts.
 const mapStateToProps = ({ users, hobbies }: ApplicationState) => ({
   users: users.users,
   selected: hobbies.selected,
@@ -76,3 +80,8 @@ export default connect(
   mapStateToProps,
   { getUserRequest, postUserRequest, postHobbyRequest, deleteUserRequest },
 )(App)
+
+const WrapUser = styled.div`
+  min-width: 276px;
+  position: relative;
+`

@@ -7,7 +7,7 @@ interface Props {
 const InputWrap = styled.div<Props>`
   border-radius: 2px;
   color: ${props => (props.one ? props.theme.input.font : props.theme.input.color)};
-  background-color: ${props => (props.one ? 'transparent' : 'rgba(255, 255, 255, 0.15)')};
+  background-color: ${props => (props.one ? 'transparent' : props.theme.input.background)};
   color: ${props => props.theme.input.color};
   // General Styles Input
   input {

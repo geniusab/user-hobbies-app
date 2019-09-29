@@ -32,6 +32,7 @@ export default UserItem
 const UserWrap = styled('div')<SelectedAttributeProps>`
   display: flex;
   flex: 1 1 auto;
+  justify-content: space-between;
   min-width: 0;
   margin-top: 4px;
   margin-bottom: 4px;

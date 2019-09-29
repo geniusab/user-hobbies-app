@@ -9,7 +9,7 @@ import { InputWrap, SelectWrap, Button } from '../../../containers/shared'
 const initState = {
   passion: 'low',
   hobby: '',
-  date: new Date().toISOString().split('T')[0],
+  createdAt: new Date().toISOString().split('T')[0],
 }
 
 type FormAddProps = {
@@ -47,7 +47,7 @@ const HobbyAddForm: React.FC<FormAddProps> = ({ addHobby, userId }) => {
                   <InputWrap>
                     <input
                       placeholder={`Enter ${input}`}
-                      type={input === 'date' ? input : 'text'}
+                      type={input === 'createdAt' ? 'date' : 'text'}
                       value={state[input]}
                       onChange={e => handleChange(input, e)}
                     />
@@ -79,7 +79,7 @@ const useAddFormHook = (addHobby: Function, userId: Number | String) => {
         id: uuidv1(), // mock API generate id, this is not a required field right now
         passion: state.passion,
         hobby: state.hobby,
-        createdAt: state.date,
+        createdAt: state.createdAt,
       }
       addHobby(hobby, userId)
       reset()
@@ -93,53 +93,3 @@ const useAddFormHook = (addHobby: Function, userId: Number | String) => {
 }
 
 export default HobbyAddForm
-
-// const Select = styled('select')`
-//
-//     font: inherit;
-//     color: ${(props) => props.theme.colors.font}
-//     width: 100%;
-//     height: 3rem;
-//     background: none;
-//     box-sizing: content-box;
-//     -webkit-tap-highlight-color: transparent;
-//     border: none;
-//     vertical-align: middle;
-//     padding: 0 8px;
-//   //border: 1px solid #ced4da;
-//   -webkit-appearance: none;
-//   text-transform: capitalize;
-// `
-
-// const Button = styled('button')`
-//   height: 48px;
-//   background-color: ${props => props.theme.colors.brand};
-//   color: ${props => props.theme.colors.white};
-//   box-sizing: border-box;
-//   position: relative;
-//   user-select: none;
-//   cursor: pointer;
-//   outline: 0;
-//   border: none;
-//   -webkit-tap-highlight-color: transparent;
-//   display: inline-block;
-//   white-space: nowrap;
-//   text-decoration: none;
-//   vertical-align: baseline;
-//   text-align: center;
-//   margin: 0;
-//   min-width: 64px;
-//   line-height: 36px;
-//   padding: 0 16px;
-//   border-radius: 2px;
-//   overflow: visible;
-//   text-transform: uppercase;
-//   transform: translate3d(0, 0, 0);
-//   transition: background 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
-//   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
-//   &:hover,
-//   &:focus {
-//     background-color: ${props => props.theme.colors.white};
-//     color: ${props => props.theme.colors.brand};
-//   }
-// `

@@ -32,7 +32,7 @@ const lightTheme: DefaultTheme = {
 
   // Text Inputs + Textarea
   input: {
-    background: '#999',
+    background: 'rgba(255, 255, 255, 0.15)',
     color: '#fff',
     borderBottom: '1px solid #3b3b38',
   },
