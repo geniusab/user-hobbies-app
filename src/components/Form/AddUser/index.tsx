@@ -1,18 +1,21 @@
-import React, { useState, FunctionComponent, ChangeEvent } from 'react'
-import User from '../../../interfaces/User.interface'
+import React, { useState } from 'react'
 import uuidv1 from 'uuid/v1'
-import './styles.scss'
+// interface
+import User from '../../../interfaces/User.interface'
+// containers
+import { InputWrap } from '../../../containers/shared'
 
 type AddUser = {
   addUser: Function
 }
 
-const AddUser: FunctionComponent<AddUser> = ({ addUser }) => {
+const AddUser: React.FC<AddUser> = ({ addUser }) => {
   const [name, setName] = useState('')
 
   const reset = () => {
     setName('')
   }
+
   const add = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
     if (name.trim() !== '') {
@@ -31,12 +34,11 @@ const AddUser: FunctionComponent<AddUser> = ({ addUser }) => {
   }
 
   return (
-    <form className="form-user" onSubmit={event => add(event)}>
+    <form onSubmit={event => add(event)}>
       <div className="group">
-        <input className="input" type="text" value={name} onChange={handleChange} />
-        <button className="btn btn-primary" type="submit">
-          Add
-        </button>
+        <InputWrap one>
+          <input type="text" value={name} onChange={handleChange} placeholder={'Enter name'} />
+        </InputWrap>
       </div>
     </form>
   )

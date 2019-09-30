@@ -1,0 +1,54 @@
+import React from 'react'
+import styled from 'styled-components'
+
+type DataTableProps = {
+  columns: string[]
+}
+
+const DataTable: React.FC<DataTableProps> = ({ children, columns }) => {
+  return (
+    <Wrapper>
+      <thead>
+        <tr>
+          {columns.map((column, i) => {
+            return <th key={i}>{column}</th>
+          })}
+        </tr>
+      </thead>
+      <tbody>{children}</tbody>
+    </Wrapper>
+  )
+}
+
+export default DataTable
+
+const Wrapper = styled('table')`
+  margin-bottom: 0;
+  border-top: 1px solid ${props => props.theme.colors.borders};
+  border-bottom: 1px solid ${props => props.theme.colors.borders};
+
+  thead {
+    tr {
+      th {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 2px solid ${props => props.theme.colors.borders};
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      border-top: 1px solid ${props => props.theme.colors.borders};
+
+      &:nth-child(even) {
+        background: ${props => props.theme.colors.tableOdd};
+      }
+
+      td {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+      }
+    }
+  }
+`

@@ -1,16 +1,10 @@
+import User from '../interfaces/User.interface'
+import Hobby from '../interfaces/Hobby.interface'
+
 export default class AppService {
-  _apiBase = 'https://www.mockapi.io/projects/5d728c255acf5e00147310a0/users'
+  _apiBase = 'https://5d728c255acf5e001473109f.mockapi.io/users'
 
-  async read(id?: string) {
-    const response = await fetch(`${this._apiBase}${id}`)
-    if (!response.ok) {
-      throw new Error(`Could not fetch ${id}, received ${response.status}`)
-    }
-    const body = await response.json()
-    return body
-  }
-
-  async getUser(id: string) {
+  async read(id: string = '') {
     const response = await fetch(`${this._apiBase}/${id}`)
     if (!response.ok) {
       throw new Error(`Could not fetch ${id}, received ${response.status}`)
@@ -21,6 +15,52 @@ export default class AppService {
 
   async list() {
     const response = await this.read()
-    return response.results
+    return response
+  }
+
+  async add(data: User) {
+    const response = await fetch(this._apiBase, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }).then(res => res.json())
+    return response
+  }
+
+  async delete(id: string) {
+    const response = await fetch(`${this._apiBase}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(res => res.json())
+    return response
+  }
+
+  async addHobby(data: Hobby, userId: string) {
+    const response = await fetch(`${this._apiBase}/${userId}/hobbies`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    }).then(res => res.json())
+    return response
+  }
+
+  async deleteHobby(id: string, userId: string) {
+    const response = await fetch(`${this._apiBase}/${userId}/hobbies/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then(res => res.json())
+    return response
   }
 }
