@@ -27,7 +27,7 @@ const lightTheme: DefaultTheme = {
     xl: '1200px',
   },
 
-  // 10. Forms
+  // Forms
   // ==========================================================================
 
   // Text Inputs + Textarea
@@ -35,6 +35,9 @@ const lightTheme: DefaultTheme = {
     background: 'rgba(255, 255, 255, 0.15)',
     color: '#fff',
     borderBottom: '1px solid #3b3b38',
+  },
+  button: {
+    hover: '#000', // color darken(brand, 20%)
   },
 }
 

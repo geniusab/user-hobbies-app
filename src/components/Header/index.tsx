@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+// containers
 import ThemLayout from '../../containers/ThemLayout'
 
 type HeaderProps = {

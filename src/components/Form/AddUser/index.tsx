@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
-import User from '../../../interfaces/User.interface'
 import uuidv1 from 'uuid/v1'
+// interface
+import User from '../../../interfaces/User.interface'
+// containers
 import { InputWrap } from '../../../containers/shared'
 
 type AddUser = {

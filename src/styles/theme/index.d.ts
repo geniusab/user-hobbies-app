@@ -30,5 +30,8 @@ declare module 'styled-components' {
       color: string
       borderBottom: string
     }
+    button: {
+      hover: string
+    }
   }
 }

@@ -1,10 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { connect } from 'react-redux'
+// interface
 import { ApplicationState } from '../../store'
+// redux
+import { connect } from 'react-redux'
+import { deleteHobbyRequest } from '../../store/hobbies/actions'
+// components
 import Hobby from '../../interfaces/Hobby.interface'
 import HobbyItem from '../HobbyItem'
-import { deleteHobbyRequest } from '../../store/hobbies/actions'
 
 type HobbyListProps = {
   hobbies: Array<Hobby>
@@ -30,19 +33,15 @@ const HobbyList: React.FC<HobbyListProps> = (props: HobbyListProps) => {
 
   const elements = hobbies.map((item, index) => {
     return (
-      <React.Fragment key={index}>
+      <tr key={index}>
         {deleteId === item.id ? (
-          <tr>
-            <td colSpan={4}>
-              <Loading>loading...</Loading>
-            </td>
-          </tr>
+          <td colSpan={4}>
+            <Loading>loading...</Loading>
+          </td>
         ) : (
-          <tr>
-            <HobbyItem isLoading={loading} hobby={item} onDeleted={() => deleteProcess(item.id, selected)} />
-          </tr>
+          <HobbyItem isLoading={loading} hobby={item} onDeleted={() => deleteProcess(item.id, selected)} />
         )}
-      </React.Fragment>
+      </tr>
     )
   })
   const hobbiesContent = elements.length ? (

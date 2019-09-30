@@ -1,5 +1,7 @@
 import React, { FunctionComponent } from 'react'
+// interface
 import Hobby from '../../interfaces/Hobby.interface'
+// containers
 import { WrapIcon } from '../../containers/shared'
 
 type HobbyItemProps = {
@@ -10,7 +12,7 @@ type HobbyItemProps = {
 
 const HobbyItem: FunctionComponent<HobbyItemProps> = (props: HobbyItemProps) => {
   const { passion, hobby, createdAt } = props.hobby
-  const { isLoading } = props
+  const { isLoading, onDeleted } = props
 
   return (
     <>
@@ -18,7 +20,7 @@ const HobbyItem: FunctionComponent<HobbyItemProps> = (props: HobbyItemProps) => 
       <td>{hobby}</td>
       <td>{new Date(createdAt).getFullYear()}</td>
       <td>
-        <WrapIcon disabled={isLoading} type="button" onClick={props.onDeleted}>
+        <WrapIcon disabled={isLoading} type="button" onClick={onDeleted}>
           <i className="fa fa-trash-o" />
         </WrapIcon>
       </td>

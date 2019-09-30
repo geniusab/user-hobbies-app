@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
-import { connect } from 'react-redux'
 import User from './interfaces/User.interface'
 // redux
+import { connect } from 'react-redux'
 import { postUserRequest, getUserRequest, deleteUserRequest } from './store/users/actions'
 import { postHobbyRequest } from './store/hobbies/actions'
 // components
@@ -29,12 +29,12 @@ type AppProps = {
 
 const App: FunctionComponent<AppProps> = props => {
   const [users, setUsers] = useState([])
-
+  const TableTH = ['Passion', 'Hobby', 'Year', 'Action']
   const { selected, getUserRequest, postUserRequest, postHobbyRequest, deleteUserRequest } = props
   const content = selected ? (
     <>
       <AddHobby addHobby={postHobbyRequest} userId={selected} />
-      <DataTable columns={['Passion', 'Hobby', 'Year', 'Action']}>
+      <DataTable columns={TableTH}>
         <HobbyList />
       </DataTable>
     </>

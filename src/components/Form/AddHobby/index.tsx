@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import uuidv1 from 'uuid/v1'
+// interface
 import Hobby from '../../../interfaces/Hobby.interface'
 import { Passion } from '../../../interfaces/Passion.interface'
-
+// containers
 import DataTable from '../../../containers/shared/DataTable'
 import { InputWrap, SelectWrap, Button } from '../../../containers/shared'
 

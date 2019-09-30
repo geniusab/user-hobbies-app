@@ -5,6 +5,8 @@ interface Props {
   margin?: string
 }
 
+// const MarginSelector = (margin:string) => (props: Props) => (props.mt_20 ? '20px auto' : '0 auto')
+
 export const Container = styled('div')`
   margin: ${(props: Props) => (props.mt_20 ? '20px auto' : '0 auto')};
   width: 100%;

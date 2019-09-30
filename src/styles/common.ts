@@ -13,7 +13,7 @@ export default css`
     font-size: 85%;
     border-collapse: collapse;
   }
-  // 10. Forms
+  // Forms
   // ==========================================================================
 
   // Text Inputs + Textarea
@@ -26,7 +26,7 @@ export default css`
     border-bottom: 0;
     border-radius: 0;
     outline: none;
-    //box-sizing: content-box;
+    // box-sizing: content-box;
     box-sizing: border-box;
     line-height: 1.1875em;
     font-family: inherit;

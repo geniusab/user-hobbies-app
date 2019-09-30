@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react'
-import User from '../../interfaces/User.interface'
 import styled from 'styled-components'
+// interface
+import User from '../../interfaces/User.interface'
 
 type UserItemProps = {
   user: User
@@ -80,10 +81,11 @@ const Button = styled('button')`
   }
   &:hover,
   &:focus {
-    background-color: #333;
-    color: ${props => props.theme.colors.white};
+    background-color: ${props => props.theme.button.hover};
+
+    color: ${props => props.theme.colors.brand};
     i {
-      color: ${props => props.theme.colors.white};
+      color: ${props => props.theme.colors.font};
     }
   }
 `
