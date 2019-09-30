@@ -1,9 +1,7 @@
 import { combineReducers } from 'redux'
 
-import users from './users/index'
-import hobbies from './hobbies/index'
+import layout from './layout'
+import users from './users'
+import hobbies from './hobbies'
 
-export default combineReducers({
-  users,
-  hobbies,
-})
+export default combineReducers({ layout, users, hobbies })

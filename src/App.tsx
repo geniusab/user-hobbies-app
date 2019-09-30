@@ -1,16 +1,21 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
-import { connect } from 'react-redux'
-
 import User from './interfaces/User.interface'
+// redux
+import { connect } from 'react-redux'
 import { postUserRequest, getUserRequest, deleteUserRequest } from './store/users/actions'
 import { postHobbyRequest } from './store/hobbies/actions'
-
+// components
 import Header from './components/Header'
 import UseList from './components/UserList'
 import AddUser from './components/Form/AddUser'
 import HobbyList from './components/HobbyList'
 import AddHobby from './components/Form/AddHobby'
-import './App.scss'
+// containers
+import { Container, ContentWrap } from './containers/Container'
+import Row from './containers/Row'
+import DataTable from './containers/shared/DataTable'
+import { ApplicationState } from './store'
+import styled from 'styled-components'
 
 type AppProps = {
   users: Array<User>
@@ -24,18 +29,21 @@ type AppProps = {
 
 const App: FunctionComponent<AppProps> = props => {
   const [users, setUsers] = useState([])
-
+  const TableTH = ['Passion', 'Hobby', 'Year', 'Action']
   const { selected, getUserRequest, postUserRequest, postHobbyRequest, deleteUserRequest } = props
   const content = selected ? (
     <>
-      {' '}
       <AddHobby addHobby={postHobbyRequest} userId={selected} />
-      <HobbyList />
+      <DataTable columns={TableTH}>
+        <HobbyList />
+      </DataTable>
     </>
   ) : (
-    <div>Chose user</div>
+    <Container mt_20>
+      <h2>Chose user</h2>
+    </Container>
   )
-  const ClassNames = selected ? 'elem elem-100' : 'elem not_found'
+
   const countUser = props.users.length
 
   useEffect(() => {
@@ -44,27 +52,36 @@ const App: FunctionComponent<AppProps> = props => {
   }, [getUserRequest, users])
 
   return (
-    <div className="App">
+    <>
       <Header count={countUser} />
-      <hr />
-      <div className="wrap">
-        <div className="elem">
-          <AddUser addUser={postUserRequest} />
-          <UseList deleteUser={deleteUserRequest} />
-        </div>
-        <div className={ClassNames}>{content}</div>
-      </div>
-      <hr />
-    </div>
+      <Container mt_20>
+        <Row>
+          {/* users */}
+          <WrapUser>
+            <AddUser addUser={postUserRequest} />
+            <UseList deleteUser={deleteUserRequest} />
+          </WrapUser>
+          {/* hobbies */}
+          <ContentWrap margin={'mlr_16'}>{content}</ContentWrap>
+        </Row>
+      </Container>
+    </>
   )
 }
-
-const mapStateToProps = (state: any) => ({
-  users: state.users.users,
-  selected: state.hobbies.selected,
+// It's usually good practice to only include one context at a time in a connected component.
+// Although if necessary, you can always include multiple contexts. Just make sure to
+// separate them from each other to prevent prop conflicts.
+const mapStateToProps = ({ users, hobbies }: ApplicationState) => ({
+  users: users.users,
+  selected: hobbies.selected,
 })
 
 export default connect(
   mapStateToProps,
   { getUserRequest, postUserRequest, postHobbyRequest, deleteUserRequest },
 )(App)
+
+const WrapUser = styled.div`
+  min-width: 276px;
+  position: relative;
+`

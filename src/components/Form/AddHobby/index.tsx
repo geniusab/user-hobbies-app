@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import uuidv1 from 'uuid/v1'
+// interface
 import Hobby from '../../../interfaces/Hobby.interface'
 import { Passion } from '../../../interfaces/Passion.interface'
-import './styles.scss'
+// containers
+import DataTable from '../../../containers/shared/DataTable'
+import { InputWrap, SelectWrap, Button } from '../../../containers/shared'
 
 const initState = {
   passion: 'low',
   hobby: '',
-  date: new Date().toISOString().split('T')[0],
+  createdAt: new Date().toISOString().split('T')[0],
 }
 
 type FormAddProps = {
@@ -26,34 +29,39 @@ const HobbyAddForm: React.FC<FormAddProps> = ({ addHobby, userId }) => {
   const { add, handleChange, state } = useAddFormHook(addHobby, userId)
   return (
     <form onSubmit={event => add(event)}>
-      <div className="group">
-        {(Object.keys(state) as Array<keyof typeof state>).map(input => {
-          return (
-            <div key={input}>
-              {input === 'passion' ? (
-                <select onChange={e => handleChange(input, e)} value={state[input]}>
-                  {(Object.keys(Passions) as Array<keyof typeof Passions>).map(option => (
-                    <option key={option} value={Passions[option]}>
-                      {Passions[option]}
-                    </option>
-                  ))}
-                </select>
-              ) : (
-                <input
-                  placeholder={`Enter ${input}`}
-                  className="input"
-                  type={input === 'date' ? input : 'text'}
-                  value={state[input]}
-                  onChange={e => handleChange(input, e)}
-                />
-              )}
-            </div>
-          )
-        })}
-        <button className="btn btn-primary" type="submit">
-          Add
-        </button>
-      </div>
+      <DataTable columns={['Passion', 'Hobby', 'Year', 'Action']}>
+        <tr>
+          {(Object.keys(state) as Array<keyof typeof state>).map(input => {
+            return (
+              <td key={input}>
+                {input === 'passion' ? (
+                  <SelectWrap>
+                    <select onChange={e => handleChange(input, e)} value={state[input]}>
+                      {(Object.keys(Passions) as Array<keyof typeof Passions>).map(option => (
+                        <option key={option} value={Passions[option]}>
+                          {Passions[option]}
+                        </option>
+                      ))}
+                    </select>
+                  </SelectWrap>
+                ) : (
+                  <InputWrap>
+                    <input
+                      placeholder={`Enter ${input}`}
+                      type={input === 'createdAt' ? 'date' : 'text'}
+                      value={state[input]}
+                      onChange={e => handleChange(input, e)}
+                    />
+                  </InputWrap>
+                )}
+              </td>
+            )
+          })}
+          <td>
+            <Button type="submit">Add</Button>
+          </td>
+        </tr>
+      </DataTable>
     </form>
   )
 }
@@ -72,7 +80,7 @@ const useAddFormHook = (addHobby: Function, userId: Number | String) => {
         id: uuidv1(), // mock API generate id, this is not a required field right now
         passion: state.passion,
         hobby: state.hobby,
-        createdAt: state.date,
+        createdAt: state.createdAt,
       }
       addHobby(hobby, userId)
       reset()
