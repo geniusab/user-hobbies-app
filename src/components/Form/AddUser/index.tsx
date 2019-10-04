@@ -3,7 +3,7 @@ import uuidv1 from 'uuid/v1'
 // interface
 import User from '../../../interfaces/User.interface'
 // containers
-import { InputWrap } from '../../../containers/shared'
+import { InputWrap } from '../../Styles/shared'
 
 type AddUser = {
   addUser: Function

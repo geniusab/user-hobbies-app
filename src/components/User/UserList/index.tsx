@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 // interface
-import User from '../../interfaces/User.interface'
+import User from '../../../interfaces/User.interface'
 // redux
 import { connect } from 'react-redux'
-import { selectedUserRequest } from '../../store/hobbies/actions'
-import { deleteUserRequest } from '../../store/users/actions'
+import { selectedUserRequest } from '../../../store/hobbies/actions'
+import { deleteUserRequest } from '../../../store/users/actions'
 // components
-import UserItem from '../UserItem'
+import UserItem from '../UserItem/index'
 
 type UseListProps = {
   users: User[]

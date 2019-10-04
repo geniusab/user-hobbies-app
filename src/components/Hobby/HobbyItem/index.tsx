@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react'
 // interface
-import Hobby from '../../interfaces/Hobby.interface'
+import Hobby from '../../../interfaces/Hobby.interface'
 // containers
-import { WrapIcon } from '../../containers/shared'
+import { WrapIcon } from '../../Styles/shared/index'
 
 type HobbyItemProps = {
   hobby: Hobby

@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
 // interface
-import { ApplicationState } from '../../store'
+import { ApplicationState } from '../../../store/index'
 // redux
 import { connect } from 'react-redux'
-import { deleteHobbyRequest } from '../../store/hobbies/actions'
+import { deleteHobbyRequest } from '../../../store/hobbies/actions'
 // components
-import Hobby from '../../interfaces/Hobby.interface'
-import HobbyItem from '../HobbyItem'
+import Hobby from '../../../interfaces/Hobby.interface'
+import HobbyItem from '../HobbyItem/index'
 
 type HobbyListProps = {
   hobbies: Array<Hobby>

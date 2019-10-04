@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
 // interface
-import User from '../../interfaces/User.interface'
+import User from '../../../interfaces/User.interface'
 
 type UserItemProps = {
   user: User

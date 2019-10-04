@@ -4,8 +4,8 @@ import uuidv1 from 'uuid/v1'
 import Hobby from '../../../interfaces/Hobby.interface'
 import { Passion } from '../../../interfaces/Passion.interface'
 // containers
-import DataTable from '../../../containers/shared/DataTable'
-import { InputWrap, SelectWrap, Button } from '../../../containers/shared'
+import DataTable from '../../Styles/shared/DataTable'
+import { InputWrap, SelectWrap, Button } from '../../Styles/shared'
 
 const initState = {
   passion: 'low',
