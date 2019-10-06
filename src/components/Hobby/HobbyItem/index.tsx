@@ -7,12 +7,13 @@ import { WrapIcon } from '../../Styles/shared/index'
 type HobbyItemProps = {
   hobby: Hobby
   isLoading: boolean
+  deleteId: boolean
   onDeleted: (event: React.MouseEvent) => void
 }
 
 const HobbyItem: FunctionComponent<HobbyItemProps> = (props: HobbyItemProps) => {
   const { passion, hobby, createdAt } = props.hobby
-  const { isLoading, onDeleted } = props
+  const { isLoading, onDeleted, deleteId } = props
 
   return (
     <>
@@ -23,6 +24,7 @@ const HobbyItem: FunctionComponent<HobbyItemProps> = (props: HobbyItemProps) => 
         <WrapIcon disabled={isLoading} type="button" onClick={onDeleted}>
           <i className="fa fa-trash-o" />
         </WrapIcon>
+        {deleteId ? ' loading...' : ''}
       </td>
     </>
   )

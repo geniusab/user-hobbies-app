@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import styled from 'styled-components'
 // interface
 import { ApplicationState } from '../../../store/index'
 // redux
@@ -34,13 +33,7 @@ const HobbyList: React.FC<HobbyListProps> = (props: HobbyListProps) => {
   const elements = hobbies.map((item, index) => {
     return (
       <tr key={index}>
-        {deleteId === item.id ? (
-          <td colSpan={4}>
-            <Loading>loading...</Loading>
-          </td>
-        ) : (
-          <HobbyItem isLoading={loading} hobby={item} onDeleted={() => deleteProcess(item.id, selected)} />
-        )}
+        <HobbyItem deleteId={deleteId === item.id} isLoading={loading} hobby={item} onDeleted={() => deleteProcess(item.id, selected)} />
       </tr>
     )
   })
@@ -51,16 +44,18 @@ const HobbyList: React.FC<HobbyListProps> = (props: HobbyListProps) => {
       <td colSpan={4}>This user does not have any hobbies.</td>
     </tr>
   )
-  const content =
-    loading && !elements.length ? (
-      <tr>
-        <td colSpan={4}>loading...</td>
-      </tr>
-    ) : (
-      hobbiesContent
-    )
 
-  return <>{content}</>
+  return (
+    <>
+      {loading ? (
+        <tr>
+          <td colSpan={4}>loading...</td>
+        </tr>
+      ) : (
+        hobbiesContent
+      )}
+    </>
+  )
 }
 
 // It's usually good practice to only include one context at a time in a connected component.
@@ -76,7 +71,3 @@ export default connect(
   mapStateToProps,
   { deleteHobbyRequest },
 )(HobbyList)
-
-const Loading = styled.div`
-  line-height: 40px;
-`
