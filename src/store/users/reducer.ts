@@ -26,12 +26,13 @@ const reducer = (state = INITIAL_STATE, action: UsersActionTypes): UsersState =>
     case UsersTypes.POST_USERS_REQUEST:
       return { ...state, loading: true }
     case UsersTypes.POST_USERS_SUCCESS:
-      return { ...state, loading: false, users: [...state.users, action.payload] }
+      return { ...state, loading: false, users: [action.payload, ...state.users] }
     // delete user
     case UsersTypes.DELETE_USERS_REQUEST:
       return { ...state, loading: true }
     case UsersTypes.DELETE_USERS_SUCCESS: {
-      console.log(state)
+      // also you can use only a filter
+      // state.users.filter({id} => id !== action.payload.id)}
       const id = action.payload.id
       const idx = state.users.findIndex(el => el.id === id)
       const newArray = [...state.users.slice(0, idx), ...state.users.slice(idx + 1)]

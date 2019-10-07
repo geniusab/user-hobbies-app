@@ -3,7 +3,7 @@ import uuidv1 from 'uuid/v1'
 // interface
 import User from '../../../interfaces/User.interface'
 // containers
-import { InputWrap } from '../../../containers/shared'
+import { InputWrap } from '../../Styles/shared'
 
 type AddUser = {
   addUser: Function
@@ -11,10 +11,6 @@ type AddUser = {
 
 const AddUser: React.FC<AddUser> = ({ addUser }) => {
   const [name, setName] = useState('')
-
-  const reset = () => {
-    setName('')
-  }
 
   const add = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
@@ -25,7 +21,7 @@ const AddUser: React.FC<AddUser> = ({ addUser }) => {
         hobbies: [],
       }
       addUser(user)
-      reset()
+      setName('')
     }
   }
 

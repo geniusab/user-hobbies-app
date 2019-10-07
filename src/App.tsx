@@ -6,14 +6,14 @@ import { postUserRequest, getUserRequest, deleteUserRequest } from './store/user
 import { postHobbyRequest } from './store/hobbies/actions'
 // components
 import Header from './components/Header'
-import UseList from './components/UserList'
+import UseList from './components/User/UserList'
 import AddUser from './components/Form/AddUser'
-import HobbyList from './components/HobbyList'
+import HobbyList from './components/Hobby/HobbyList'
 import AddHobby from './components/Form/AddHobby'
 // containers
-import { Container, ContentWrap } from './containers/Container'
-import Row from './containers/Row'
-import DataTable from './containers/shared/DataTable'
+import { Container, ContentWrap } from './components/Styles/Container'
+import Row from './components/Styles/Row'
+import DataTable from './components/Styles/shared/DataTable'
 import { ApplicationState } from './store'
 import styled from 'styled-components'
 
