@@ -1,36 +1,10 @@
-import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
-// interface
-import User from '../../interfaces/User.interface'
-
-type UserItemProps = {
-  user: User
-  selected: string | number
-  onDeleted: (event: React.MouseEvent) => void
-  onSelected: (event: React.MouseEvent) => void
-  loading: boolean
-}
 
 export interface SelectedAttributeProps {
   selected?: boolean
 }
 
-const UserItem: FunctionComponent<UserItemProps> = (props: UserItemProps) => {
-  const { user, onDeleted, onSelected, selected, loading } = props
-
-  return (
-    <UserWrap selected={selected === user.id}>
-      <UserName onClick={onSelected}>{user.name}</UserName>
-      <Button type="button" disabled={loading} onClick={onDeleted} className="btn btn-danger">
-        <i className="fa fa-trash-o" />
-      </Button>
-    </UserWrap>
-  )
-}
-
-export default UserItem
-
-const UserWrap = styled('div')<SelectedAttributeProps>`
+export const UserWrap = styled('div')<SelectedAttributeProps>`
   display: flex;
   flex: 1 1 auto;
   justify-content: space-between;
@@ -52,7 +26,7 @@ const UserWrap = styled('div')<SelectedAttributeProps>`
   }
 `
 
-const UserName = styled('span')`
+export const UserName = styled('span')`
   cursor: pointer;
   height: 48px;
   font-family: inherit;
@@ -66,7 +40,7 @@ const UserName = styled('span')`
   padding: 0 8px;
 `
 
-const Button = styled('button')`
+export const Button = styled('button')`
   display: inline-block;
   cursor: pointer;
   width: 40px;

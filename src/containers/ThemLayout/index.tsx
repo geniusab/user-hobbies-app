@@ -2,6 +2,7 @@ import React from 'react'
 import { ThemeColors } from '../../store/layout/types'
 import { useDispatch, useSelector } from 'react-redux'
 import * as layoutActions from '../../store/layout/actions'
+import { ApplicationState } from '../../store'
 
 // Redux-specific props.
 type LayoutContainerProps = {
@@ -17,7 +18,7 @@ type LayoutContainerRenderProps = {
 
 const ThemLayout: React.FC<LayoutContainerRenderProps> = ({ render, children }) => {
   // We can use Hooks to call in our selector/dispatch functions.
-  const { theme } = useSelector((state: any) => state.layout)
+  const { theme } = useSelector(({ layout }: ApplicationState) => layout)
   const dispatch = useDispatch()
 
   // Create the `setTheme` handler. We use the `dispatch` we got from `useDispatch()` to create said selector.

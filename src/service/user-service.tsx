@@ -9,17 +9,15 @@ export default class AppService {
     if (!response.ok) {
       throw new Error(`Could not fetch ${id}, received ${response.status}`)
     }
-    const body = await response.json()
-    return body
+    return await response.json()
   }
 
   async list() {
-    const response = await this.read()
-    return response
+    return await this.read()
   }
 
   async add(data: User) {
-    const response = await fetch(this._apiBase, {
+    return await fetch(this._apiBase, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -27,22 +25,20 @@ export default class AppService {
       },
       body: JSON.stringify(data),
     }).then(res => res.json())
-    return response
   }
 
   async delete(id: string) {
-    const response = await fetch(`${this._apiBase}/${id}`, {
+    return await fetch(`${this._apiBase}/${id}`, {
       method: 'DELETE',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
     }).then(res => res.json())
-    return response
   }
 
   async addHobby(data: Hobby, userId: string) {
-    const response = await fetch(`${this._apiBase}/${userId}/hobbies`, {
+    return await fetch(`${this._apiBase}/${userId}/hobbies`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -50,17 +46,15 @@ export default class AppService {
       },
       body: JSON.stringify(data),
     }).then(res => res.json())
-    return response
   }
 
   async deleteHobby(id: string, userId: string) {
-    const response = await fetch(`${this._apiBase}/${userId}/hobbies/${id}`, {
+    return await fetch(`${this._apiBase}/${userId}/hobbies/${id}`, {
       method: 'DELETE',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
     }).then(res => res.json())
-    return response
   }
 }

@@ -1,6 +1,8 @@
 /**
  * Action types
  */
+import Hobby from '../../interfaces/Hobby.interface'
+
 export enum HobbyTypes {
   GET_HOBBY_REQUEST = '@hobby/GET_HOBBY_REQUEST',
   GET_HOBBY_SUCCESS = '@hobby/GET_HOBBY_SUCCESS',
@@ -18,44 +20,30 @@ export enum HobbyTypes {
  * Type Checking Actions & Action Creators
  * https://redux.js.org/recipes/usage-with-typescript
  */
-// ...
-// interface SelectedActionRequest {
-//   type: typeof SELECTED_USER_REQUEST
-//   selected: string
-//   hobbies: Array<Hobby>
-// }
-//
-// interface SelectedActionSuccess {
-//   type: typeof SELECTED_USER_SUCCESS
-//   selected: string
-//   hobbies: Array<Hobby>
-// }
-//
-// // add hobby to user
-// interface PostHobbyToUser {
-//   type: typeof POST_HOBBY_TO_SUCCESS
-//   payload: Hobby
-// }
-// interface SendRequestHobbyToUser {
-//   type: typeof POST_HOBBY_TO_REQUEST
-//   payload: boolean
-//   userId?: String
-// }
-//
-// interface AddActionHobby {
-//   type: typeof ADD_HOBBY
-//   payload: Hobby
-// }
-//
-// interface DeleteActionHobby {
-//   type: typeof DELETE_HOBBY
-//   payload: Number | String
-// }
-//
-// export type HobbiesActionTypes =
-//   | SelectedActionRequest
-//   | SelectedActionSuccess
-//   | AddActionHobby
-//   | DeleteActionHobby
-//   | PostHobbyToUser
-//   | SendRequestHobbyToUser
+interface GetRequest {
+  type: typeof HobbyTypes.GET_HOBBY_REQUEST
+}
+interface GetSuccess {
+  type: typeof HobbyTypes.GET_HOBBY_SUCCESS
+  payload: {
+    hobbies: Array<Hobby>
+    selected: string
+  }
+}
+interface PostRequest {
+  type: typeof HobbyTypes.POST_HOBBY_REQUEST
+  payload: Hobby
+}
+interface PostSuccess {
+  type: typeof HobbyTypes.POST_HOBBY_SUCCESS
+  payload: Hobby
+}
+interface DeleteRequest {
+  type: typeof HobbyTypes.DELETE_HOBBY_REQUEST
+}
+interface DeleteSuccess {
+  type: typeof HobbyTypes.DELETE_HOBBY_SUCCESS
+  payload: Hobby
+}
+
+export type HobbiesActionTypes = GetRequest | GetSuccess | PostRequest | PostSuccess | DeleteRequest | DeleteSuccess

@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-interface Props {
+export interface PropsInputWrap {
   one?: boolean
 }
 
-const InputWrap = styled.div<Props>`
+const InputWrap = styled.div<PropsInputWrap>`
   border-radius: 2px;
   color: ${props => (props.one ? props.theme.input.font : props.theme.input.color)};
   background-color: ${props => (props.one ? 'transparent' : props.theme.input.background)};

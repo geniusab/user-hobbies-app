@@ -4,8 +4,9 @@ import createSagaMiddleware from 'redux-saga'
 import rootReducer from './rootReducer'
 import rootSaga from './rootSaga'
 import { LayoutState } from './layout/types'
-import { UsersState } from './users'
-import { HobbyState } from './hobbies'
+
+import { UsersState } from './users/reducer'
+import { HobbyState } from './hobbies/reducer'
 
 // The top-level state object
 export interface ApplicationState {

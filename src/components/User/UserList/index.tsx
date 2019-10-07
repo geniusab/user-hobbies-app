@@ -1,13 +1,14 @@
 import React from 'react'
-import styled from 'styled-components'
 // interface
-import User from '../../interfaces/User.interface'
+import User from '../../../interfaces/User.interface'
 // redux
 import { connect } from 'react-redux'
-import { selectedUserRequest } from '../../store/hobbies/actions'
-import { deleteUserRequest } from '../../store/users/actions'
+import { selectedUserRequest } from '../../../store/hobbies/actions'
+import { deleteUserRequest } from '../../../store/users/actions'
 // components
-import UserItem from '../UserItem'
+import UserItem from '../UserItem/index'
+// styles
+import { WrapList } from './styles'
 
 type UseListProps = {
   users: User[]
@@ -48,16 +49,3 @@ export default connect(
   mapStateToProps,
   { selectedUserRequest, deleteUserRequest },
 )(UseList)
-
-const WrapList = styled.ul`
-  max-height: 400px;
-  overflow-y: auto;
-  position: relative;
-  ::-webkit-scrollbar {
-    width: 5px;
-    height: 8px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: ${props => props.theme.colors.borders};
-  }
-`

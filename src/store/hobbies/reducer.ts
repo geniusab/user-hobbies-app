@@ -1,4 +1,4 @@
-import { HobbyTypes } from './types'
+import { HobbiesActionTypes, HobbyTypes } from './types'
 import Hobby from '../../interfaces/Hobby.interface'
 
 export interface HobbyState {
@@ -13,7 +13,7 @@ const INITIAL_STATE: HobbyState = {
   selected: '',
 }
 
-const reducer = (state = INITIAL_STATE, action: any): HobbyState => {
+const reducer = (state = INITIAL_STATE, action: HobbiesActionTypes): HobbyState => {
   switch (action.type) {
     // get hobbies
     case HobbyTypes.GET_HOBBY_REQUEST:
