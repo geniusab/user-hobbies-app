@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import uuidv1 from 'uuid/v1'
+import React from 'react'
 // interface
 import Hobby from '../../../interfaces/Hobby.interface'
 import { Passion } from '../../../interfaces/Passion.interface'
 // containers
 import DataTable from '../../Styles/shared/DataTable'
 import { InputWrap, SelectWrap, Button } from '../../Styles/shared'
-
+// hooks
+import useAddFormHook from '../../../hooks/useFormState'
 const initState = {
   passion: 'low',
   hobby: '',
@@ -26,7 +26,7 @@ const Passions: Passion = {
 }
 
 const HobbyAddForm: React.FC<FormAddProps> = ({ addHobby, userId }) => {
-  const { add, handleChange, state } = useAddFormHook(addHobby, userId)
+  const { add, handleChange, state } = useAddFormHook(addHobby, userId, initState)
   return (
     <form onSubmit={event => add(event)}>
       <DataTable columns={['Passion', 'Hobby', 'Year', 'Action']}>
@@ -64,33 +64,6 @@ const HobbyAddForm: React.FC<FormAddProps> = ({ addHobby, userId }) => {
       </DataTable>
     </form>
   )
-}
-
-const useAddFormHook = (addHobby: Function, userId: Number | String) => {
-  const [state, setState] = useState(initState)
-
-  const reset = () => {
-    setState(initState)
-  }
-
-  const add = (event: React.FormEvent<HTMLFormElement>): void => {
-    event.preventDefault()
-    if (state.passion.trim() !== '' && state.hobby.trim() !== '') {
-      const hobby: Hobby = {
-        id: uuidv1(), // mock API generate id, this is not a required field right now
-        passion: state.passion,
-        hobby: state.hobby,
-        createdAt: state.createdAt,
-      }
-      addHobby(hobby, userId)
-      reset()
-    }
-  }
-
-  const handleChange = (key: string, e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setState({ ...state, [key]: e.target.value })
-  }
-  return { add, handleChange, state }
 }
 
 export default HobbyAddForm

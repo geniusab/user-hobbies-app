@@ -12,10 +12,6 @@ type AddUser = {
 const AddUser: React.FC<AddUser> = ({ addUser }) => {
   const [name, setName] = useState('')
 
-  const reset = () => {
-    setName('')
-  }
-
   const add = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
     if (name.trim() !== '') {
@@ -25,7 +21,7 @@ const AddUser: React.FC<AddUser> = ({ addUser }) => {
         hobbies: [],
       }
       addUser(user)
-      reset()
+      setName('')
     }
   }
 
