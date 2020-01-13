@@ -1,6 +1,6 @@
 import React from 'react'
 // interface
-import Hobby from '../../../interfaces/Hobby.interface'
+// import Hobby from '../../../interfaces/Hobby.interface'
 import { Passion } from '../../../interfaces/Passion.interface'
 // containers
 import DataTable from '../../Styles/shared/DataTable'

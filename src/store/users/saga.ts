@@ -1,7 +1,9 @@
-import { all, fork, put, takeEvery, takeLatest } from 'redux-saga/effects'
+import { all, fork, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
 import users from '../../service/user-service'
 import { UsersTypes } from './types'
 import { deleteUserRequest, deleteUserSuccess, fetchFailed, getUserSuccess, postUserRequest, postUserSuccess } from './actions'
+import { selectedUserSuccess } from '../hobbies/actions'
+import { ApplicationState } from '../index'
 
 const API = new users()
 
@@ -22,11 +24,16 @@ export function* addUser(action: ReturnType<typeof postUserRequest>) {
     yield put(fetchFailed())
   }
 }
-
+const getSelected = (state: ApplicationState) => state.hobbies.selected
 export function* deleteUser(action: ReturnType<typeof deleteUserRequest>) {
   try {
     const data = yield API.delete(action.payload)
     yield put(deleteUserSuccess(data))
+    // we will reset state hobbies and selected user if delete element was select
+    const selected = yield select(getSelected)
+    if (selected === action.payload) {
+      yield put(selectedUserSuccess({ id: '', hobbies: [] }))
+    }
   } catch (error) {
     yield put(fetchFailed())
   }
